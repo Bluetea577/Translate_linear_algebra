@@ -1,0 +1,13 @@
+$\boldsymbol{v}=\begin{bmatrix} v_{1}\\v_{2} \end{bmatrix}$
+
+$\boldsymbol{w}=\begin{bmatrix} w_{1}\\w_{2} \end{bmatrix}$
+
+$\boldsymbol{v}=(v_{1},v_{2})$
+
+$\boldsymbol{w}=(w_{1},w_{2})$
+
+$\boldsymbol{v} \cdot \boldsymbol{w}$
+
+<table><td bgcolor=DarkSeaGreen>
+
+</td></table>

@@ -1,0 +1,17 @@
+# 一、向量
+
+线性代数的核心与两个向量运算有关。向量相加：***v*** + ***w***，然后将他们乘以数字c和d得到：c***v***和d***w***。以上两个运算组合起来就得到了向量的线性组合：c***v*** + d***w***。
+
+向量的线性组合：$c \boldsymbol{v} +   d\boldsymbol{w} = c\begin{bmatrix} 1\\1 \end{bmatrix}+d\begin{bmatrix} 2\\3 \end{bmatrix}=\begin{bmatrix} c+2d\\c+3d \end{bmatrix}$
+
+线性组合非常重要！有时我们想要一种特殊的组合，比如$c=2$和$d=1$，可以产生$c\mathbf{v} + d \mathbf{w}=(4,5)$。我们也可以产生**v**，**w**的所有的组合。
+
+向量可以看作是沿着一条直线。当**w**不在这条直线上时，组合$c\mathbf{v} + d \mathbf{w}$就是在一个二维平面上的值。四维空间的四个向量**u**，**v**，**w**，**z**出发，组合$c \mathbf{u} +   d\mathbf{v} + e\mathbf{w} + f\mathbf{z}$可能能够填充整个空间。当然也有特殊情况，这些向量组合也可能会在一个平面或是一条直线上。（设想一下高中时所学的里的合成与分解，就自然能够明白了）
+
+第一章解释了这些中心思想，一切建立在这些基础上。我们从二维矢量和三维矢量开始学习，然后是更高维度。线性代数真正令人印象深刻的点是，如何顺利进入n维空间。你可以想象一个10维空间，即使这东西画不出来。
+
+这就是本书的目的，即进入n维空间。第一步是1.1和1.2节中的计算，然后第三节概述了这些思想。
+
+-   1.1 向量加法$\boldsymbol{v}+\boldsymbol{w}$和线性组合$c\boldsymbol{v}+d\boldsymbol{w}$。
+-   1.2 向量的点积$\boldsymbol{v}\cdot \boldsymbol{w}$和向量长度$\parallel v\parallel =\sqrt{v\cdot v} $
+-   1.3 矩阵A，线性方程$Ax=b$，求解$x=A^{-1} b$

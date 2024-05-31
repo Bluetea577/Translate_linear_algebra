@@ -1,0 +1,7 @@
+# 前言 {.unnumbered}
+
+这里是关于线性代数（第5版）的中文翻译版本。
+
+该书作者：[美] Gilbert Strang
+书名：[Introduction to Linear Algebra](https://book.douban.com/subject/34820335/)
+译者：李铭洋

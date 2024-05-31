@@ -1,0 +1,47 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Linear_algebra"
+  author: "Gilbert Strang"
+  date: "2024/5/22"
+
+  page-footer:
+    left: |
+      这是线性代数的章节翻译，也是学习笔记
+    right: |
+      此书由 <a href="https://quarto.org/">Quarto</a>创建
+  chapters:
+    - index.qmd
+
+    - part: 1_intro_vector.qmd
+      chapters: 
+        - 1_1_linear_combinations.qmd
+        - 1_2_lengths_and_dotproducts.qmd
+        - 1_3_matrices.qmd
+    - part: 2_solve_linear_equation.qmd
+      chapters:
+        - 2_1_vector_and_linearequ.qmd
+        - 2_2_idea_of_elimination.qmd
+        - 2_3_elimination_using_matrices.qmd
+        - 2_4_rules_matrix_opera.qmd
+        - 2_5_inverse_matrices.qmd
+        - 2_6_elimination_factorization.qmd
+        - 2_7_transposes_and_permutations.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+number-sections: false
+number-depth: 2
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

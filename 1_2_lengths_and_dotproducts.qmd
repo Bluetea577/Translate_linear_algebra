@@ -1,0 +1,63 @@
+# 1.2 长度和点积
+
+长度也叫模。这节我们先介绍一下向量***v***和***w***之间的点乘。这涉及到两个分量之间的成绩再加和。
+
+然后是向量的几何部分（长度和夹角的余弦值）。
+
+向量$\boldsymbol{v}=(v_{1},v_{2})$和$\boldsymbol{w}=(w_{1},w_{2})$的点积或内积$\boldsymbol{v} \cdot \boldsymbol{w}$：
+
+$\boldsymbol{v} \cdot \boldsymbol{w}=v_{1}w_{1}+v_{2}w_{2}$
+
+下面介绍几个相关的知识点
+
+1.  向量$\boldsymbol{v}=(4,2)$和$\boldsymbol{w}=(-1,2)$的点积等于0，也表征着这两个向量相互垂直。（点积为0的向量相互垂直，速记(1,0)和(0,1)相互垂直）
+2.  点积和顺序无关，有交换律
+
+下面举几个应用的例子：
+
+1.  力学：在x=-1的点上放重量为4的东西，在x=2的点上放重量为2的东西，那么就能保持平衡。这是由于点积(4)(-1)+(2)(2)=0。这是经典工程学的例子了，重量向量是(w1,w2)=(4,2)，距离向量是(v1,v2)=(-1,2)。平衡方程即是力矩为0，即w1v1+w2v2=0。
+2.  经济及商业：三个商品需要购买和出售。价格向量***p***为(p1,p2,p3)，数量向量***q***为(q1,q2,q3)买入为负，卖出为正。因此收入就是$\boldsymbol{q} \cdot \boldsymbol{p}$。点积为零意味着收支平衡。也就是***p***垂直于***q***。那么拥有数千种商品的超市将会迅速进入高维空间。
+
+一个特殊的情况是向量自身的点积，这个乘积是向量长度的平方。
+
+那么向量的长度为：（也可写作$|\boldsymbol{v}|$）
+
+$\parallel \boldsymbol{v}\parallel =\sqrt{\boldsymbol{v}\cdot \boldsymbol{v}} = (v_{1}^{2} +v_{2}^{2}+\cdots +v_{n}^{2})^\frac{1}{2} $
+
+设想二维空间中如果向量的分量是1和2，那么这个向量的箭头就是三角形的第三边，由勾股定理可得$1^{2}+2^{2}=\|v\|^{2}$。
+
+下面介绍单位矢量的概念。长度为1的向量是单位矢量，即$\boldsymbol{u} \cdot \boldsymbol{u}=1$。
+
+我们可以使用一个向量除以它的长度得到一个单位矢量：$\frac{\boldsymbol{v}}{\| \boldsymbol{v}\|}$。
+
+那么我们来看，xy轴上的单位向量我们写作***i***，***j***。在xy平面上，单位向量可以由$\theta$来确定：
+
+**单位向量** $\qquad \boldsymbol{i}=\begin{bmatrix}1\\0\end{bmatrix}\quad \boldsymbol{j}=\begin{bmatrix}0\\1\end{bmatrix}\quad \boldsymbol{u}=\begin{bmatrix}\cos{\theta}\\ \sin{\theta} \end{bmatrix}$
+
+显然，θ=0时，***u***就是***i***；θ=π/2时，***u***就是***j***。由于$\cos^{2}{\theta}+\sin^{2}{\theta}=1$，因此该向量为单位向量，可以将其表示在单位圆上。
+
+下面介绍一下两个向量之间的夹角。首先我们说过两个垂直向量之间的点积为0。下面我们来证明一下：
+
+倘若现有垂直向量$\boldsymbol{v}$和$\boldsymbol{w}$，可知二者为直w_角三角形的两条直角边，那么第三边可以表示为$\boldsymbol{v}-\boldsymbol{w}$。由勾股定理得：$\|\boldsymbol{v}^{2}\|+\|\boldsymbol{w}^{2}\|=\|\boldsymbol{v-w}\|^{2}$，取模运算后得：$(v_{1}^{2}+v_{2}^{2})+(w_{1}^{2}+w_{2}^{2})=(v_{1}-w_{1})^{2}+(v_{2}-w_{2})^{2}$。左右消元后可得：$0=-2v_{1}w_{1}-2v_{2}w_{2}$。也就是得到了$\boldsymbol{v} \cdot \boldsymbol{w}=0$，证毕。
+
+那么如果说两个向量之间的点积不为0，此时夹角的情况又当如何呢？我们来证明一下，倘若现在我们有任意两个单位向量$\boldsymbol{u}$和$\boldsymbol{U}$，二者点积$\boldsymbol{u} \cdot \boldsymbol{U}$会告诉我们，易得当两者之间夹角$\theta>90^{\circ}$时点积为负，$\theta<90^{\circ}$时点积为正（二者以垂直即点积为0作为界）。那么，先设二者夹角为θ，我们知道$\boldsymbol{u}=(\cos{\theta}_{1},\sin\theta_{1})$，$\boldsymbol{U}=(\cos{\theta}_{2},\sin\theta_{2})$，$\theta=\theta_{1}-\theta_{2}$。（$\theta_{1}$和$\theta_{2}$之间可以产生置换，这个不影响结果，即倘若2角大于1角，反过来就是了）。因此$\cos\theta=\cos(\theta_{1}-\theta_{2})=\cos\theta_{1}\cos\theta_{2}+\sin\theta_{1}\sin\theta_{2}=\boldsymbol{u} \cdot \boldsymbol{U}$，故我们知道了单位向量之间的点积就是二者之间夹角的余弦值，因此该值在-1和1之间。
+
+正是因此，我们有了测量两个向量之间夹角的方法：
+
+$$\frac{\boldsymbol{v} \cdot \boldsymbol{w}}{\|\boldsymbol{v} \|\| \boldsymbol{w}\|}=\cos\theta$$
+
+由于余弦值的绝对值不超过1，所以由此给出了两个伟大的不等式：
+
+**Schwarz 不等式** $\quad |\boldsymbol{v} \cdot \boldsymbol{w}|\le\|\boldsymbol{v}\|\|\boldsymbol{w}\|$
+
+**Triangel 不等式** $\quad \|\boldsymbol{v}+\boldsymbol{w}\|\le\|\boldsymbol{v}\|+\|\boldsymbol{w}\|$
+
+下面来看$\boldsymbol{v}=(a,b)$和$\boldsymbol{w}=(b,a)$的点积是2*ab*。长度都是$\sqrt{a^{2}+b^{2}}$。故根据上面不等式有：$2ab \le a^{2}+b^{2}$。
+
+这是个非常著名的不等式，让我们把$x=a^{2}$和$y=b^{2}$。也就是几何平均值不大于算术平均值。
+
+几何平均值 ≤ 算术平均值：$ab\le \frac{a^{2}+b^{2}}{2}$ 也就是$\sqrt{xy}\le \frac{x+y}{2}$
+
+在计算机软件中，比如MATLAB，Python和Julia，R等，它们的工作都是直接面向整个向量而不是它们的分量。都是按行来输入的，然后回通过`'`将他们转换成列向量。其中点乘会被转换成`*`。
+
+类似：$\begin{bmatrix}1\\2\end{bmatrix}\cdot\begin{bmatrix}3\\4\end{bmatrix}$会变成$\begin{bmatrix}1&2\end{bmatrix}\begin{bmatrix}3\\4\end{bmatrix}$也就是变成了$\boldsymbol{v}'*\boldsymbol{w}$。
