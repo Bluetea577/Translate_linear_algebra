@@ -12,6 +12,12 @@ book:
       这是线性代数的章节翻译，也是学习笔记
     right: |
       此书由 <a href="https://quarto.org/">Quarto</a>创建
+  cover-image: cover.jpg
+  favicon: cover.jpg
+  site-url: https://bluetea577.github.io/Translate_linear_algebra/
+  repo-url: https://github.com/Bluetea577/Translate_linear_algebra
+  repo-branch: main
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
 
