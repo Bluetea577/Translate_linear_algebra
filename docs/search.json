@@ -1,0 +1,175 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Linear_algebra",
+    "section": "",
+    "text": "前言\n这里是关于线性代数（第5版）的中文翻译版本。\n该书作者：[美] Gilbert Strang 书名：Introduction to Linear Algebra 译者：李铭洋",
+    "crumbs": [
+      "前言"
+    ]
+  },
+  {
+    "objectID": "1_intro_vector.html",
+    "href": "1_intro_vector.html",
+    "title": "一、向量",
+    "section": "",
+    "text": "线性代数的核心与两个向量运算有关。向量相加：v + w，然后将他们乘以数字c和d得到：cv和dw。以上两个运算组合起来就得到了向量的线性组合：cv + dw。\n向量的线性组合：\\(c \\boldsymbol{v} +   d\\boldsymbol{w} = c\\begin{bmatrix} 1\\\\1 \\end{bmatrix}+d\\begin{bmatrix} 2\\\\3 \\end{bmatrix}=\\begin{bmatrix} c+2d\\\\c+3d \\end{bmatrix}\\)\n线性组合非常重要！有时我们想要一种特殊的组合，比如\\(c=2\\)和\\(d=1\\)，可以产生\\(c\\mathbf{v} + d \\mathbf{w}=(4,5)\\)。我们也可以产生v，w的所有的组合。\n向量可以看作是沿着一条直线。当w不在这条直线上时，组合\\(c\\mathbf{v} + d \\mathbf{w}\\)就是在一个二维平面上的值。四维空间的四个向量u，v，w，z出发，组合\\(c \\mathbf{u} +   d\\mathbf{v} + e\\mathbf{w} + f\\mathbf{z}\\)可能能够填充整个空间。当然也有特殊情况，这些向量组合也可能会在一个平面或是一条直线上。（设想一下高中时所学的里的合成与分解，就自然能够明白了）\n第一章解释了这些中心思想，一切建立在这些基础上。我们从二维矢量和三维矢量开始学习，然后是更高维度。线性代数真正令人印象深刻的点是，如何顺利进入n维空间。你可以想象一个10维空间，即使这东西画不出来。\n这就是本书的目的，即进入n维空间。第一步是1.1和1.2节中的计算，然后第三节概述了这些思想。\n\n1.1 向量加法\\(\\boldsymbol{v}+\\boldsymbol{w}\\)和线性组合\\(c\\boldsymbol{v}+d\\boldsymbol{w}\\)。\n1.2 向量的点积\\(\\boldsymbol{v}\\cdot \\boldsymbol{w}\\)和向量长度$v= $\n1.3 矩阵A，线性方程\\(Ax=b\\)，求解\\(x=A^{-1} b\\)",
+    "crumbs": [
+      "一、向量"
+    ]
+  },
+  {
+    "objectID": "1_1_linear_combinations.html",
+    "href": "1_1_linear_combinations.html",
+    "title": "1.1 向量和线性组合",
+    "section": "",
+    "text": "矢量和矢量之间是由区别的，就像你不能把苹果和橘子放在一起一样。看下面的二维向量：\nColumn vector v \\(\\boldsymbol{v}=\\begin{bmatrix} v_{1}\\\\v_{2} \\end{bmatrix}\\)，其中\\(v_{1}\\)是向量\\(\\boldsymbol{v}\\)的第一个分量，\\(v_{2}\\)是向量\\(\\boldsymbol{v}\\)的第二个分量。\n我们是不会将\\(v_{1}\\)和\\(v_{2}\\)相加的，但是我们可以执行向量相加：\n向量加法 \\(\\boldsymbol{v}=\\begin{bmatrix}v_{1}\\\\v_{2} \\end{bmatrix}\\) 和 \\(\\boldsymbol{w}=\\begin{bmatrix} w_{1}\\\\w_{2} \\end{bmatrix}\\)执行的是对应分量相加：\\(\\boldsymbol{v+w}=\\begin{bmatrix} v_{1}+w_{1}\\\\v_{2}+w_{2} \\end{bmatrix}\\)。\n另外，减法也是该规则，不再赘述。\n还有一种运算是标量乘法。标量乘以向量，执行向量的每个分量的分别相乘：\n标量乘法 \\(2\\boldsymbol{v}=\\begin{bmatrix} 2v_{1}\\\\2v_{2} \\end{bmatrix}=\\boldsymbol{v+v} \\quad -\\boldsymbol{v}=\\begin{bmatrix} -v_{1}\\\\-v_{2} \\end{bmatrix}\\)。\n另外需要注意，\\(-\\boldsymbol{v}\\)和\\(\\boldsymbol{v}\\)之和是零向量，但是这个零向量不等于数字零。0是由分量0和0组成的。线性代数就是建立在这些向量运算上的。\n我们将向量加法和标量乘法结合起来就得到了线性组合的方法。就像：\\(c\\boldsymbol{v}+d\\boldsymbol{w}\\)。\n四种特殊的向量组合是：和、差、零以及标量相乘：\n\n\\(1\\boldsymbol{v}+1\\boldsymbol{w}=前面所讲向量之和\\)\n\\(1\\boldsymbol{v}-1\\boldsymbol{w}=前面所讲向量之差\\)\n\\(0\\boldsymbol{v}+0\\boldsymbol{w}=\\boldsymbol{零向量}\\)\n\\(c\\boldsymbol{v}+0\\boldsymbol{w}=在v方向上的向量c\\boldsymbol{v}\\)\n\n零向量总会是一个可能的组合。每次我们构建一个向量空间，就会有一个零向量被包含进去。整个向量空间，包含了所有v和w的组合。\n下图展示了向量的可视化。向量可以使用箭头表示，也可以用平面上的点来表示。\n\n\n\n1-1\n\n\n那么，向量里有三个分量呢。两个分量的向量对应于xy平面上的点，而三个分量时这个xy平面被xyz三维空间所取代。另外，请注意，向量(x,y)与向量(x,y,0)是不同的。\n现在开始 \\(\\boldsymbol{v}=\\begin{bmatrix} 1 \\\\ 1 \\\\ -1 \\end{bmatrix}\\)也可以被写为\\(\\boldsymbol{v}=(1,1,-1)\\)\n使用行的形式来写是为了节省空间，但v=(1,1,-1)绝不是行向量！要时刻记着，它是一个暂时躺着的列向量，与行向量[1,1,-1]是完全不同的。这个1行3列的行向量其实是3行1列的列向量的转置。\n三维空间中，向量相加仍是各个分量加和。因此，4维、5维或n维中的向量加法都是如此。v，w，v+w在向量空间中表示出来的话，在同一个平面上。\n三维空间中典型的线性组合是\\(\\boldsymbol{u}+4\\boldsymbol{v}-2\\boldsymbol{w}\\)：\n\\(\\begin{bmatrix} 1\\\\0\\\\3 \\end{bmatrix} + 4\\begin{bmatrix} 1\\\\2\\\\1 \\end{bmatrix}-2\\begin{bmatrix} 2\\\\3\\\\-1 \\end{bmatrix}=\\begin{bmatrix} 1\\\\2\\\\9 \\end{bmatrix}\\)\n接下来有几个重要的问题：\n对于一个向量u，线性组合cu是其唯一的线性组合可能。对于两个向量cu+dv，对于三个向量cu+dv+ew，其中cde都不做限制，uvw假设是三维空间中的向量，那么：\n\ncu的图像是如何？\ncu+dv图像是如何？\ncu+dv+ew图像是如何？\n\n极端情况下，他们都是零向量，那么每个组合都是零。如果它们是典型的非零向量的话：\n\ncu是通过(0,0,0)填充的一条直线\ncu+dv是通过(0,0,0)填充的一个平面\ncu+dv+ew填充了整个三维空间\n\n当然，也要去考虑一些特殊情况，上述是及其一般的情况。设想一下，如果w恰好是cu+dv的话，那也就意味着向量w就在前两个向量的平面上。uvw的组合就不会在uv平面外了。因此就得不到整个三维空间了。（你可以设想一下，xyz坐标系的建立是怎么回事，这是最标准的坐标系，即相互垂直，可以覆盖到所有三维平面上的点。但是如果z轴在xy平面上呢，这个z轴就废了，就只能是表示二维平面的点了。cu+dv等于w也就可以看作这种情况的一般化。类似的也就有了cu刚好等于v的特殊情况之类）\n总之，线性组合u或uv或uvw。在三维空间上，所有的组合填充了一条线，然后是一个平面，然后是整个空间\\(\\bold{R}^3\\)。\n应用：\n1.1 A 向量v=(1,1,0)和w=(0,1,1)的线性组合填充了一个平面\\(\\bold{R}^3\\)。那么，如何找到一个不在该平面的向量呢。\n首先列出v和w的所有线性组合cv+dw：\n\\(c\\boldsymbol{v}+d\\boldsymbol{w}=c\\begin{bmatrix} 1\\\\1\\\\0 \\end{bmatrix}+d\\begin{bmatrix} 0\\\\1\\\\1 \\end{bmatrix}=\\begin{bmatrix} c\\\\c+d\\\\d \\end{bmatrix}\\)\n因此，此平面的向量，第2个参数总是1、3之和。因此诸如(1,2,3)不在这个平面.\n另外由于该平面穿过(0,0,0)我们知道n=(1,-1,1)垂直于这个平面。后面我们将会学到可以通过点积来确认垂直关系:\\(\\boldsymbol{v} \\cdot \\boldsymbol{n}=0\\)和\\(\\boldsymbol{w} \\cdot \\boldsymbol{n}=0\\)。垂直向量点积为0。\n1.1 B 找到c和d的两个方程，使得线性组合cv+dw等于b：\n\\(\\boldsymbol{v}=\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}\\quad \\boldsymbol{w}=\\begin{bmatrix} -1\\\\2 \\end{bmatrix} \\quad \\boldsymbol{b}=\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\n应用数学中，解决问题通常是两个部分内容：\n\n建模部分 用一组方程来表示问题\n计算部分 用快速准确的算法解决问题\n\n这里我们只列出方程，后续第二章在学习解法。例子可以用一个线性代数的基础模型来拟合：\n找到n个数字，\\(c_{1},\\dots,c_{n}\\)使得\\(c_{1}\\boldsymbol{v}_{1}+\\cdots+c_{n}\\boldsymbol{v}_{n}=\\boldsymbol{b}\\)，这里n=2：\n\\(cv+dw=b\\qquad c\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}+d\\begin{bmatrix} -1\\\\2 \\end{bmatrix} =\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\nc，d可以由以下方程得出：\n两个原始方程 \\(\\qquad \\begin{matrix} 2c-d=1\\\\-c+2d=0 \\end{matrix}\\)\n每个方程产生一条直线，两条直线相交于c=2/3，d=1/3。当然我们可以用矩阵方程的形式来展现：\n2×2矩阵 \\(\\qquad \\begin{bmatrix} 2&-1\\\\-1&2 \\end{bmatrix} \\begin{bmatrix} c\\\\d \\end{bmatrix}=\\begin{bmatrix}1\\\\0\\end{bmatrix}\\)",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1.1 向量和线性组合</span>"
+    ]
+  },
+  {
+    "objectID": "1_2_lengths_and_dotproducts.html",
+    "href": "1_2_lengths_and_dotproducts.html",
+    "title": "1.2 长度和点积",
+    "section": "",
+    "text": "长度也叫模。这节我们先介绍一下向量v和w之间的点乘。这涉及到两个分量之间的成绩再加和。\n然后是向量的几何部分（长度和夹角的余弦值）。\n向量\\(\\boldsymbol{v}=(v_{1},v_{2})\\)和\\(\\boldsymbol{w}=(w_{1},w_{2})\\)的点积或内积\\(\\boldsymbol{v} \\cdot \\boldsymbol{w}\\)：\n\\(\\boldsymbol{v} \\cdot \\boldsymbol{w}=v_{1}w_{1}+v_{2}w_{2}\\)\n下面介绍几个相关的知识点\n\n向量\\(\\boldsymbol{v}=(4,2)\\)和\\(\\boldsymbol{w}=(-1,2)\\)的点积等于0，也表征着这两个向量相互垂直。（点积为0的向量相互垂直，速记(1,0)和(0,1)相互垂直）\n点积和顺序无关，有交换律\n\n下面举几个应用的例子：\n\n力学：在x=-1的点上放重量为4的东西，在x=2的点上放重量为2的东西，那么就能保持平衡。这是由于点积(4)(-1)+(2)(2)=0。这是经典工程学的例子了，重量向量是(w1,w2)=(4,2)，距离向量是(v1,v2)=(-1,2)。平衡方程即是力矩为0，即w1v1+w2v2=0。\n经济及商业：三个商品需要购买和出售。价格向量p为(p1,p2,p3)，数量向量q为(q1,q2,q3)买入为负，卖出为正。因此收入就是\\(\\boldsymbol{q} \\cdot \\boldsymbol{p}\\)。点积为零意味着收支平衡。也就是p垂直于q。那么拥有数千种商品的超市将会迅速进入高维空间。\n\n一个特殊的情况是向量自身的点积，这个乘积是向量长度的平方。\n那么向量的长度为：（也可写作\\(|\\boldsymbol{v}|\\)）\n$= = (v_{1}^{2} +v_{2}{2}++v_{n}{2})^ $\n设想二维空间中如果向量的分量是1和2，那么这个向量的箭头就是三角形的第三边，由勾股定理可得\\(1^{2}+2^{2}=\\|v\\|^{2}\\)。\n下面介绍单位矢量的概念。长度为1的向量是单位矢量，即\\(\\boldsymbol{u} \\cdot \\boldsymbol{u}=1\\)。\n我们可以使用一个向量除以它的长度得到一个单位矢量：\\(\\frac{\\boldsymbol{v}}{\\| \\boldsymbol{v}\\|}\\)。\n那么我们来看，xy轴上的单位向量我们写作i，j。在xy平面上，单位向量可以由\\(\\theta\\)来确定：\n单位向量 \\(\\qquad \\boldsymbol{i}=\\begin{bmatrix}1\\\\0\\end{bmatrix}\\quad \\boldsymbol{j}=\\begin{bmatrix}0\\\\1\\end{bmatrix}\\quad \\boldsymbol{u}=\\begin{bmatrix}\\cos{\\theta}\\\\ \\sin{\\theta} \\end{bmatrix}\\)\n显然，θ=0时，u就是i；θ=π/2时，u就是j。由于\\(\\cos^{2}{\\theta}+\\sin^{2}{\\theta}=1\\)，因此该向量为单位向量，可以将其表示在单位圆上。\n下面介绍一下两个向量之间的夹角。首先我们说过两个垂直向量之间的点积为0。下面我们来证明一下：\n倘若现有垂直向量\\(\\boldsymbol{v}\\)和\\(\\boldsymbol{w}\\)，可知二者为直w_角三角形的两条直角边，那么第三边可以表示为\\(\\boldsymbol{v}-\\boldsymbol{w}\\)。由勾股定理得：\\(\\|\\boldsymbol{v}^{2}\\|+\\|\\boldsymbol{w}^{2}\\|=\\|\\boldsymbol{v-w}\\|^{2}\\)，取模运算后得：\\((v_{1}^{2}+v_{2}^{2})+(w_{1}^{2}+w_{2}^{2})=(v_{1}-w_{1})^{2}+(v_{2}-w_{2})^{2}\\)。左右消元后可得：\\(0=-2v_{1}w_{1}-2v_{2}w_{2}\\)。也就是得到了\\(\\boldsymbol{v} \\cdot \\boldsymbol{w}=0\\)，证毕。\n那么如果说两个向量之间的点积不为0，此时夹角的情况又当如何呢？我们来证明一下，倘若现在我们有任意两个单位向量\\(\\boldsymbol{u}\\)和\\(\\boldsymbol{U}\\)，二者点积\\(\\boldsymbol{u} \\cdot \\boldsymbol{U}\\)会告诉我们，易得当两者之间夹角\\(\\theta&gt;90^{\\circ}\\)时点积为负，\\(\\theta&lt;90^{\\circ}\\)时点积为正（二者以垂直即点积为0作为界）。那么，先设二者夹角为θ，我们知道\\(\\boldsymbol{u}=(\\cos{\\theta}_{1},\\sin\\theta_{1})\\)，\\(\\boldsymbol{U}=(\\cos{\\theta}_{2},\\sin\\theta_{2})\\)，\\(\\theta=\\theta_{1}-\\theta_{2}\\)。（\\(\\theta_{1}\\)和\\(\\theta_{2}\\)之间可以产生置换，这个不影响结果，即倘若2角大于1角，反过来就是了）。因此\\(\\cos\\theta=\\cos(\\theta_{1}-\\theta_{2})=\\cos\\theta_{1}\\cos\\theta_{2}+\\sin\\theta_{1}\\sin\\theta_{2}=\\boldsymbol{u} \\cdot \\boldsymbol{U}\\)，故我们知道了单位向量之间的点积就是二者之间夹角的余弦值，因此该值在-1和1之间。\n正是因此，我们有了测量两个向量之间夹角的方法：\n\\[\\frac{\\boldsymbol{v} \\cdot \\boldsymbol{w}}{\\|\\boldsymbol{v} \\|\\| \\boldsymbol{w}\\|}=\\cos\\theta\\]\n由于余弦值的绝对值不超过1，所以由此给出了两个伟大的不等式：\nSchwarz 不等式 \\(\\quad |\\boldsymbol{v} \\cdot \\boldsymbol{w}|\\le\\|\\boldsymbol{v}\\|\\|\\boldsymbol{w}\\|\\)\nTriangel 不等式 \\(\\quad \\|\\boldsymbol{v}+\\boldsymbol{w}\\|\\le\\|\\boldsymbol{v}\\|+\\|\\boldsymbol{w}\\|\\)\n下面来看\\(\\boldsymbol{v}=(a,b)\\)和\\(\\boldsymbol{w}=(b,a)\\)的点积是2ab。长度都是\\(\\sqrt{a^{2}+b^{2}}\\)。故根据上面不等式有：\\(2ab \\le a^{2}+b^{2}\\)。\n这是个非常著名的不等式，让我们把\\(x=a^{2}\\)和\\(y=b^{2}\\)。也就是几何平均值不大于算术平均值。\n几何平均值 ≤ 算术平均值：\\(ab\\le \\frac{a^{2}+b^{2}}{2}\\) 也就是\\(\\sqrt{xy}\\le \\frac{x+y}{2}\\)\n在计算机软件中，比如MATLAB，Python和Julia，R等，它们的工作都是直接面向整个向量而不是它们的分量。都是按行来输入的，然后回通过'将他们转换成列向量。其中点乘会被转换成*。\n类似：\\(\\begin{bmatrix}1\\\\2\\end{bmatrix}\\cdot\\begin{bmatrix}3\\\\4\\end{bmatrix}\\)会变成\\(\\begin{bmatrix}1&2\\end{bmatrix}\\begin{bmatrix}3\\\\4\\end{bmatrix}\\)也就是变成了\\(\\boldsymbol{v}'*\\boldsymbol{w}\\)。",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>1.2 长度和点积</span>"
+    ]
+  },
+  {
+    "objectID": "1_3_matrices.html",
+    "href": "1_3_matrices.html",
+    "title": "1.3 矩阵",
+    "section": "",
+    "text": "线性方程\n前面我们有\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)，那么现在如果知道b要怎么求x呢？于是，就有了如下方程：\n\\[\\begin{equation}\n方程A\\boldsymbol{x}=\\boldsymbol{b}\\quad \\begin{matrix}x{1}=b{1}\\\\-x{1}+x{2}=b{2}\\\\-x{2}+x{3}=b{3}\\end{matrix}\\qquad\n解\\boldsymbol{x}=A^{-1}\\boldsymbol{b}\\quad \\begin{matrix}x{1}=b{1}\\\\x{2}=b{1}+b{2}\\\\x{3}=b{1}+b{2}+b{3}\\end{matrix}\n\\end{equation}\\]\n这个方程可以按顺序从上到下依次解开，因为A是一个三角矩阵。此时的矩阵A是可逆的。",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1.3 矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "1_3_matrices.html#逆矩阵",
+    "href": "1_3_matrices.html#逆矩阵",
+    "title": "1.3 矩阵",
+    "section": "逆矩阵",
+    "text": "逆矩阵\n让我们再来看(5)中方程的解。我们可以从中发现一个和矩阵：\n\\[\\begin{equation}\n\\begin{bmatrix}x{1}\\\\x{2}\\\\x{3}\\end{bmatrix}=\\begin{bmatrix}b{1}\\\\b{1}+b{2}\\\\b{1}+b{2}+b{3}\\end{bmatrix}=\\begin{bmatrix}1&0&0\\\\1&1&0\\\\1&1&1\\end{bmatrix}\\begin{bmatrix}b{1}\\\\b{2}\\\\b{3}\\end{bmatrix}\n\\end{equation}\\]\nx是b的差，b是x的和。公式(6)中的和矩阵是差矩阵\\(A\\)的逆矩阵\\(A^{-1}\\)。\n公式(6)告诉了我们两个重要的事实：\n\n对于每个\\(\\boldsymbol{b}\\)都有\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)。\n矩阵\\(A^{-1}\\)给出了解\\(x=A^{-1}\\boldsymbol{b}\\)。\n\n下一章将会虚招更多的Ax=b的方程，看看他们的解。\n接下来，让我们将矩阵求解与微积分进行一个对比。我们把向量\\(\\boldsymbol{x}\\)变成函数\\(x(t)\\)。差\\(A\\boldsymbol{x}\\)变成导数\\(dx/dt=b(t)\\)。那么逆过程\\(A^{-1}\\boldsymbol{b}\\)就变成了\\(b(t)\\)的积分。差的和就相当于是对导数的积分。\n根据微积分的基础：积分就是微分的逆运算。\n\\[\\begin{equation}\nA\\boldsymbol{x}=\\boldsymbol{b} \\quad \\boldsymbol{and}\\quad \\boldsymbol{x}=A^{-1}\\boldsymbol{b}\\qquad \\frac{dx}{dt}=b \\quad and \\quad x(t)=\\int_{0}^{t}b\\ dt\n\\end{equation}\\]\n比如我们的\\(x(t)=t^2\\)，其导数就是2t。当t为1，2，3时，b是2，4，6。但是我们通过差矩阵得到的结果是2t-1而不是2t。",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1.3 矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "1_3_matrices.html#循环差分",
+    "href": "1_3_matrices.html#循环差分",
+    "title": "1.3 矩阵",
+    "section": "循环差分",
+    "text": "循环差分\n下面，我们来使用一个新的向量\\(\\boldsymbol{w}^{*}\\)\n\\[\\boldsymbol{u}=\\begin{bmatrix} 1\\\\-1\\\\0 \\end{bmatrix}\\qquad\\boldsymbol{v}=\\begin{bmatrix} 0\\\\1\\\\-1 \\end{bmatrix}\\qquad\\boldsymbol{w}^{*}=\\begin{bmatrix} -1\\\\0\\\\1 \\end{bmatrix}\\]\n此时再将它们线性组合起来就得到了一个循环差分矩阵C：\n\\[\\begin{equation}\nC\\boldsymbol{x}=\\begin{bmatrix}1&0&-1\\\\-1&1&0\\\\0&-1&1\\end{bmatrix}\\begin{bmatrix}x{1}\\\\x{2}\\\\x{3}\\end{bmatrix}=\\begin{bmatrix}x{1}-x{3}\\\\x{2}-x{1}\\\\x{3}-x{2}\\end{bmatrix}=\\boldsymbol{b}\n\\end{equation}\\]\n这个矩阵C不是三角矩阵。实际上这个\\(C\\boldsymbol{x}=\\boldsymbol{b}\\)的方程是无解的，因为它可以找到无穷多解或0个解：\n\\[\\begin{equation}\nC\\boldsymbol{x}=\\boldsymbol{0}:\\begin{bmatrix}x{1}-x{3}\\\\x{2}-x{1}\\\\x{3}-x{2}\\end{bmatrix}=\\begin{bmatrix}0\\\\0\\\\0\\end{bmatrix}:\\begin{bmatrix}x{1}\\\\x{2}\\\\x{3}\\end{bmatrix}=\\begin{bmatrix}c\\\\c\\\\c\\end{bmatrix}\n\\end{equation}\\]\n那么，如果取\\(\\boldsymbol{b}=(1,3,5)\\)：\n\\[\\begin{equation}\n\\begin{bmatrix}x{1}-x{3}\\\\x{2}-x{1}\\\\x{3}-x{2}\\end{bmatrix}=\\begin{bmatrix}1\\\\3\\\\5\\end{bmatrix}\n\\end{equation}\\]\n等式左右相加不相等，明显无解。让我们从几何的角度来看待这个问题。由(1)，b就可以看作是向量\\(u，v，w^{*}\\)的线性组合。没有任何线性组合可以产生向量\\(\\boldsymbol{b}=(1,3,5)\\)。右侧需要满足\\(b{1}+b{2}+b{3}=0\\)。\n在几何上，所有的线性组合\\(x_{1}\\boldsymbol{u}+x_{2}\\boldsymbol{v}+x_{3}\\boldsymbol{w}^{*}\\)都在一个平面\\(b{1}+b{2}+b{3}=0\\)上。\n\n\n\n1-1",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1.3 矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "1_3_matrices.html#独立和相关",
+    "href": "1_3_matrices.html#独立和相关",
+    "title": "1.3 矩阵",
+    "section": "独立和相关",
+    "text": "独立和相关\n上图展示了这些列向量，无论是矩阵A还是C，前两个列向量是相同的，就是第三个不同。如果我们只根据前两个向量是可以得到一个二维平面的。问题的关键就在于这第三个向量在不在这个平面上。\n\n独立：\\(\\boldsymbol{w}\\)不在\\(\\boldsymbol{u}\\boldsymbol{v}\\)的平面上\n相关：\\(\\boldsymbol{w^{*}}\\)在\\(\\boldsymbol{u}\\boldsymbol{v}\\)的平面上\n\n那么前面判断向量是否在同一平面的方法就可以拉过来了。我们可以知道\\(\\boldsymbol{u}\\boldsymbol{v}\\)平面可以表示为线性组合\\(c\\boldsymbol{v}+d\\boldsymbol{w}\\)，只要能找到\\(\\boldsymbol{w}=c\\boldsymbol{v}+d\\boldsymbol{w}\\)就说明他们在一个平面上。\n因此：\n\n独立列向量：\\(A\\boldsymbol{x}=\\boldsymbol{0}\\)有一个解。A被称为可逆矩阵。\n相关列向量：\\(C\\boldsymbol{x}=\\boldsymbol{0}\\)有许多解。A被称为奇异矩阵。",
+    "crumbs": [
+      "一、向量",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>1.3 矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html",
+    "href": "2_1_vector_and_linearequ.html",
+    "title": "2.1 向量和线性方程",
+    "section": "",
+    "text": "三个方程和三个未知数\n来到三个未知数，有如下方程：\n\\[\\begin{align}\nx+2y+3z&=6\\notag \\\\\nA\\boldsymbol{x}=\\boldsymbol{b} \\qquad\\qquad 2x+5y+2z&=4\\\\\n6x-3y+z&=2 \\notag\n\\end{align}\\]\n我们寻找xyz来解这个方程，当然解可能存在也可能不存在，对于这个方程组来说，解是存在的。当未知数和方程数相等时，解往往是一个。\n解这个方程前，我们来看这两种方法：\n行 行图展示了三个平面交于一个点。\n列 列图将三个列向量进行组合得到 \\(\\boldsymbol{b}=(6,4,2)\\)。\n关于行的图示（图2-3），我们可以看到首先前两个方程确定了一条共直线，往往两个方程三个未知数的解就是一条直线。第三个方程给出了第三个平面。它将直线L在一点切断。这个点就是在所有三个平面上的。这是行的形式，往往去想象一个三平面交于一点是比较困难的。列形式将会立刻向你展示为什么z=2。\n列图开始于方程\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)中的向量：\n\\[\\begin{equation}\nx\\begin{bmatrix}1\\\\2\\\\6\\end{bmatrix}+y\\begin{bmatrix}2\\\\5\\\\-3\\end{bmatrix}+z\\begin{bmatrix}3\\\\2\\\\1\\end{bmatrix}=\\begin{bmatrix}6\\\\4\\\\2\\end{bmatrix}=\\boldsymbol{b}\n\\end{equation}\\]\n未知数是系数x，y，z。三个向量的乘法产生了向量b。\n列图由图2-4展示，线性组合产生了向量b。结果显而易见。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html#三个方程和三个未知数",
+    "href": "2_1_vector_and_linearequ.html#三个方程和三个未知数",
+    "title": "2.1 向量和线性方程",
+    "section": "",
+    "text": "图2-3\n\n\n\n图2-3 行图示：两平面交于直线L。三平面交于一点。\n\n\n\n\n\n\n\n\n\n图2-4\n\n\n\n图2-4 列图示：列通过权重(x,y,z)=(0,0,2)进行组合",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html#从方程而来的矩阵",
+    "href": "2_1_vector_and_linearequ.html#从方程而来的矩阵",
+    "title": "2.1 向量和线性方程",
+    "section": "从方程而来的矩阵",
+    "text": "从方程而来的矩阵\n将方程中未知数的系数提取出来，就形成了系数矩阵A（以（3）为例）：\n\\[A=\\begin{bmatrix}1&2&3\\\\2&5&2\\\\6&-3&1\\end{bmatrix}\\]\n按行计算，方程是（3）；按列计算，方程是（4）；按矩阵方程就是（5）：\n\\[\\begin{equation}\n矩阵方程\\ A\\boldsymbol{x}=\\boldsymbol{b}\\qquad\\begin{bmatrix}1&2&3\\\\2&5&2\\\\6&-3&1\\end{bmatrix}\\begin{bmatrix}x\\\\y\\\\z\\end{bmatrix}=\\begin{bmatrix}6\\\\4\\\\2\\end{bmatrix}\n\\end{equation}\\]\nA乘x怎么计算呢？我们可以按行或按列计算。\n按行相乘 \\(A\\boldsymbol{x}\\)就是点乘，每行去乘以列\\(\\boldsymbol{x}\\)： \\[\\begin{equation}\nA\\boldsymbol{x}=\\begin{bmatrix}(\\boldsymbol{row\\ 1})\\cdot \\boldsymbol{x}\\\\(\\boldsymbol{row\\ 2})\\cdot \\boldsymbol{x}\\\\(\\boldsymbol{row\\ 3})\\cdot \\boldsymbol{x}\\end{bmatrix}\n\\end{equation}\\]\n按列相乘 \\(A\\boldsymbol{x}\\)就是一个列向量的组合： \\[\\begin{equation}\nA\\boldsymbol{x}=x(\\boldsymbol{column\\ 1})+y(\\boldsymbol{column\\ 2})+z(\\boldsymbol{column\\ 3})\n\\end{equation}\\]\n下面举个例子，有两个矩阵A和I（单位矩阵）：\n\\[A\\boldsymbol{x}=\\begin{bmatrix}1&0&0\\\\1&0&0\\\\1&0&0\\end{bmatrix}\\begin{bmatrix}4\\\\5\\\\6\\end{bmatrix}=\\begin{bmatrix}4\\\\4\\\\4\\end{bmatrix}\\qquad I\\boldsymbol{x}=\\begin{bmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{bmatrix}\\begin{bmatrix}4\\\\5\\\\6\\end{bmatrix}=\\begin{bmatrix}4\\\\5\\\\6\\end{bmatrix}\\]\n可以试着从行和列的角度来进行运算。这个I矩阵是个特殊的存在，他只有一个主对角线上有数字1，其余都是0。我们把它叫做单位矩阵，就像乘以1一样：\\(I\\boldsymbol{x}=\\boldsymbol{x}\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html#矩阵表示法",
+    "href": "2_1_vector_and_linearequ.html#矩阵表示法",
+    "title": "2.1 向量和线性方程",
+    "section": "矩阵表示法",
+    "text": "矩阵表示法\n2×2矩阵的第一行包含了\\(a_{11}\\)和\\(a_{12}\\)。第二行就是\\(a_{21}\\)和\\(a_{22}\\)了，但是吧这些下标打起来很费劲，所以我们使用A(i,j)来替代\\(a_{ij}\\)：\n\\[A=\\begin{bmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{bmatrix}=\\begin{bmatrix}A(1,1)&A(1,2)\\\\A(2,1)&A(2,2)\\end{bmatrix}\\]",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html#matlab中的乘法",
+    "href": "2_1_vector_and_linearequ.html#matlab中的乘法",
+    "title": "2.1 向量和线性方程",
+    "section": "MATLAB中的乘法",
+    "text": "MATLAB中的乘法\n首先我们来看MATLAB中怎么去定义A和x的。这是学习语言的第一步。一个在\\(R^n\\)中的向量x可以看作是n×1的矩阵。矩阵一次输入一行，然后用分号分隔，或者直接按列输入然后使用'进行转置：\nA=[1 2 3; 2 5 2; 6 -3 1] x=[0 0 2]’ 或 x=[0; 0; 2]\n有三种方法来表示\\(A\\boldsymbol{x}\\):\n\n矩阵乘法：b=A*x\n按行乘：b=[A(1,:)x; A(2,:)x; A(3,:)*x]\n按列乘：b=A(;,1)x(1)+A(:，2)x(2)+A(:,3)*x(3)\n\n矩阵可能是按照列存储的，所以按列计算会快一些，且A*x也是按列计算的。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_1_vector_and_linearequ.html#其他语言",
+    "href": "2_1_vector_and_linearequ.html#其他语言",
+    "title": "2.1 向量和线性方程",
+    "section": "其他语言",
+    "text": "其他语言\n有五种重要的语言都有相应的命令来实现\\(A\\boldsymbol{x}\\)：\nJulia: Ax Python: dot(A,x) R: A%%x Mathematica: A.x Maple: A*x\nJulia，Python，R都是开源软件。Julia结构简单，速度块；Python流行率广；R专门为统计而生。\nMathematica和Maple允许出现字母，而不仅仅是单纯的数字，作为MATLAB的符号工具，它们开源处理类似\\(x^2-x\\)这样的符号运算。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2.1 向量和线性方程</span>"
+    ]
+  },
+  {
+    "objectID": "2_2_idea_of_elimination.html",
+    "href": "2_2_idea_of_elimination.html",
+    "title": "2.2 消元法",
+    "section": "",
+    "text": "对于m=n=3，有三个方程\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)和三个未知数。\n前两个方程是\\(a_{11}x_1+\\cdots=b_1\\)和\\(a_{21}x_1+\\cdots=b_2\\)。\n将第一个方程乘以\\(a_{21}/a_{11}\\)然后减去第二个方程：\\(x_1\\)就完成了消元。\n角落的\\(a_{11}\\)项是第一个主元，\\(a_{21}/a_{11}\\)是第一个乘数。\n消去\\(x_1\\)需要从剩下的所有方程i中减去\\(a_{i1}/a_{11}\\)乘以第一个方程。\n现在上一个n-1个方程包含了n-1个未知数。同样的方法去消去\\(x_2\\)。\n主元中如果出现了0那么就会无法消元。交换两个方程可能会解决这个事情。\n\n\n这章解释了求解线性方程的具体方法，也就是消元法。看下面的2×2矩阵，消元前x和y是在两个方程中的，消元后，第一个未知数x在第二个方程中消失了：\n\\[\\begin{align}\n消元前：\\quad \\begin{matrix}x-2y=1\\\\3x+2y=11\\end{matrix}\\qquad消元后：\\quad \\begin{matrix}x-2y=1\\\\8y=8\\end{matrix} \\notag\n\\end{align}\\]",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2.2 消元法</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]

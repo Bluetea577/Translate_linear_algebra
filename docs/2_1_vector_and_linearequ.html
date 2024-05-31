@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.544">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Linear_algebra - 2.1 向量和线性方程</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2_2_idea_of_elimination.html" rel="next">
+<link href="./2_solve_linear_equation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_solve_linear_equation.html">二、解线性方程</a></li><li class="breadcrumb-item"><a href="./2_1_vector_and_linearequ.html"><span class="chapter-title">2.1 向量和线性方程</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Linear_algebra</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./1_intro_vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">一、向量</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_1_linear_combinations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1 向量和线性组合</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_2_lengths_and_dotproducts.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2 长度和点积</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_3_matrices.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3 矩阵</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./2_solve_linear_equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">二、解线性方程</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_1_vector_and_linearequ.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">2.1 向量和线性方程</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_2_idea_of_elimination.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2 消元法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_3_elimination_using_matrices.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3 矩阵消元</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_4_rules_matrix_opera.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4 矩阵运算规则</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_5_inverse_matrices.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5 逆矩阵</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_6_elimination_factorization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6 消元法=分解法：<em>A=LU</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_7_transposes_and_permutations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.7 转置和排列</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#三个方程和三个未知数" id="toc-三个方程和三个未知数" class="nav-link active" data-scroll-target="#三个方程和三个未知数">三个方程和三个未知数</a></li>
+  <li><a href="#从方程而来的矩阵" id="toc-从方程而来的矩阵" class="nav-link" data-scroll-target="#从方程而来的矩阵">从方程而来的矩阵</a></li>
+  <li><a href="#矩阵表示法" id="toc-矩阵表示法" class="nav-link" data-scroll-target="#矩阵表示法">矩阵表示法</a></li>
+  <li><a href="#matlab中的乘法" id="toc-matlab中的乘法" class="nav-link" data-scroll-target="#matlab中的乘法">MATLAB中的乘法</a></li>
+  <li><a href="#其他语言" id="toc-其他语言" class="nav-link" data-scroll-target="#其他语言">其他语言</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_solve_linear_equation.html">二、解线性方程</a></li><li class="breadcrumb-item"><a href="./2_1_vector_and_linearequ.html"><span class="chapter-title">2.1 向量和线性方程</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">2.1 向量和线性方程</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<ol type="1">
+<li>关于<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>的列模式（column picture）：一个关于<em>A</em>的n列的线性组合产生了向量<strong><em>b</em></strong>。</li>
+<li>向量方程<span class="math inline">\(A\boldsymbol{x}=x_{1}\boldsymbol{a}_{1}+\cdots+x_{n}\boldsymbol{a}_{n}=\boldsymbol{b}\)</span>：其中<span class="math inline">\(a_{1},a_{2},\dots,a_{n}\)</span>是由<em>A</em>的列组成。</li>
+<li>当<span class="math inline">\(\boldsymbol{b}=\boldsymbol{0}\)</span>的时候，<span class="math inline">\(A\boldsymbol{x}\)</span>也为0，一种可能的情况是<span class="math inline">\(\boldsymbol{x}=(0,\dots,0)\)</span>。</li>
+<li>关于<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>的行模式（row picture）：来自m行的m个方程确定了m个平面的交点为<span class="math inline">\(\boldsymbol{x}\)</span>。</li>
+<li>点积给出了方程中的每个平面：<span class="math inline">\((\bold{row\ 1}) \cdot \boldsymbol{x}=b_{1},\dots ,(\bold{row\ 2}) \cdot \boldsymbol{x}=b_{m}\)</span>。</li>
+<li>当<span class="math inline">\(\boldsymbol{b}=\boldsymbol{0}\)</span>的时候，所有平面<span class="math inline">\((\bold{row\ i}) \cdot \boldsymbol{x}=0\)</span>相交于<span class="math inline">\(\boldsymbol{x}=(0,0,\dots,0)\)</span>。</li>
+</ol>
+<hr>
+<p>线性代数的中心问题是求解方程组。这些方程组都是现行的，也就是未知数只能和数字相乘，而不能出现诸如x乘以y。首先，我们来看2个方程两个未知数的情况：</p>
+<p><span class="math display">\[\begin{align}
+x-2y&amp;=1\notag \\
+3x+2y&amp;=11
+\end{align}\]</span></p>
+<p>我们从第一行开始，这一行<span class="math inline">\(x-2y=1\)</span>产生了一条xy平面上的直线，线上的点都是方程的解。这条直线的斜率是<span class="math inline">\(\frac{1}{2}\)</span>，因为y增长1的时候x会增长2。斜率在微积分和线性代数中同样的重要！</p>
+<p>下图2.1就展示了方程所代表的两条直线的交点，解开了这个方程。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-1.png" class="img-fluid figure-img"></p>
+<figcaption>图2-1</figcaption>
+</figure>
+</div>
+<center>
+图2-1 行图：点(3,1)是两条直线的交点
+</center>
+<p><br></p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+行：行图展示了两条交于单个点的方程的解。
+</td>
+</tr></tbody></table>
+<p>现在，切换列模式看看。我想要称这样的线性方程为“向量方程”。我们看到的不是数字而是向量了。如果你把原方程按列分开，就会得到一个向量方程：</p>
+<p><span class="math display">\[\begin{equation}
+x\begin{bmatrix}1\\3\end{bmatrix}+y\begin{bmatrix}-2\\2\end{bmatrix}=\begin{bmatrix}1\\11\end{bmatrix}=\boldsymbol{b}
+\end{equation}\]</span></p>
+<p>左侧是两个列向量。问题在于如何找到这些向量的线性组合来构建等式右侧。后来我们找到了x=3，y=1（自然与前面结果是一样的），来产生<span class="math inline">\(3(\boldsymbol{column\ 1})+1(\boldsymbol{column\ 2})=\boldsymbol{b}\)</span>。</p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+列：列图中将左侧的列向量进行组合来产生右侧的向量。
+</td>
+</tr></tbody></table>
+<p>如下图2-2所示，我们得到了相应的2方程2未知数的列图。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-2.png" class="img-fluid figure-img"></p>
+<figcaption>图2-2</figcaption>
+</figure>
+</div>
+<center>
+图2-2 列图：列向量的组合产生了右侧的(1,11)
+</center>
+<p><br></p>
+<p>总体看来：左侧是向量方程按照列进行的线性组合。问题是如何找到x=3和y=1。我们结合了乘以标量和向量加法来实现这一组合。这一步非常重要，因为他用到了两个基本运算：</p>
+<p>线性组合<span class="math inline">\(\qquad 3\begin{bmatrix}1\\3\end{bmatrix}+\begin{bmatrix}-2\\2\end{bmatrix}=\begin{bmatrix}1\\11\end{bmatrix}\)</span></p>
+<p>无论使用行的方法还是列，它们的结果当然是一致的。我不知道你会更喜欢哪种方式。假设你对于两行的式子更加熟悉，那么你可能会更喜欢使用行的方法，但是很快会改变的。我是更喜欢列向量的线性组合。因为你想要去看到一个四维空间的四个向量的组合是比你去看到四个超平面相交于一个点要更容易的（即使是一个超平面都很难去想象）</p>
+<p>左侧方程产生了一个2×2的系数矩阵<em>A</em>：</p>
+<p><span class="math display">\[A=\begin{bmatrix}1&amp;-2\\3&amp;2\end{bmatrix}\]</span></p>
+<p>去从行和列的角度来看一个矩阵是在线性代数中是非常典型的方法。行给出了我们行图，列给出了列图。同样的数字，同样的方程，不一样的图示。我们用矩阵方程的形式来展示前面的方程：</p>
+<p>矩阵方程<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\qquad\begin{bmatrix}1&amp;-2\\3&amp;2\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}1\\11\end{bmatrix}\)</span></p>
+<p>因此，通过行和列的形式，我们有了矩阵向量相乘的方法：<strong>行的点乘法或者列的组合法</strong>。</p>
+<p>本章是要解决n个方程n个未知数的。要对矩阵的乘法和逆运算很清楚，这两个是可逆矩阵的关键。</p>
+<p>矩阵的消去法有四个步骤：</p>
+<ol type="1">
+<li>通过一系列矩阵步骤<em>Eij</em>将矩阵<em>A</em>消去至一个三角矩阵<em>U</em>。</li>
+<li>三角矩阵通过从下到上的反向代换求解。</li>
+<li>矩阵语言中A被分解成了LU=(下三角)(上三角)。</li>
+<li>如果矩阵A可逆则消去成功（可能需要行交换）。</li>
+</ol>
+<section id="三个方程和三个未知数" class="level2">
+<h2 class="anchored" data-anchor-id="三个方程和三个未知数">三个方程和三个未知数</h2>
+<p>来到三个未知数，有如下方程：</p>
+<p><span class="math display">\[\begin{align}
+x+2y+3z&amp;=6\notag \\
+A\boldsymbol{x}=\boldsymbol{b} \qquad\qquad 2x+5y+2z&amp;=4\\
+6x-3y+z&amp;=2 \notag
+\end{align}\]</span></p>
+<p>我们寻找xyz来解这个方程，当然解可能存在也可能不存在，对于这个方程组来说，解是存在的。当未知数和方程数相等时，解往往是一个。</p>
+<p>解这个方程前，我们来看这两种方法：</p>
+<p><strong>行</strong> <em>行图展示了三个平面交于一个点。</em></p>
+<p><strong>列</strong> <em>列图将三个列向量进行组合得到 <span class="math inline">\(\boldsymbol{b}=(6,4,2)\)</span>。</em></p>
+<p>关于行的图示（图2-3），我们可以看到首先前两个方程确定了一条共直线，往往两个方程三个未知数的解就是一条直线。第三个方程给出了第三个平面。它将直线L在一点切断。这个点就是在所有三个平面上的。这是行的形式，往往去想象一个三平面交于一点是比较困难的。<strong>列形式将会立刻向你展示为什么z=2。</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-3.png" class="img-fluid figure-img"></p>
+<figcaption>图2-3</figcaption>
+</figure>
+</div>
+<center>
+图2-3 行图示：两平面交于直线L。三平面交于一点。
+</center>
+<p><br></p>
+<p>列图开始于方程<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>中的向量：</p>
+<p><span class="math display">\[\begin{equation}
+x\begin{bmatrix}1\\2\\6\end{bmatrix}+y\begin{bmatrix}2\\5\\-3\end{bmatrix}+z\begin{bmatrix}3\\2\\1\end{bmatrix}=\begin{bmatrix}6\\4\\2\end{bmatrix}=\boldsymbol{b}
+\end{equation}\]</span></p>
+<p>未知数是系数x，y，z。三个向量的乘法产生了向量<strong><em>b</em></strong>。</p>
+<p>列图由图2-4展示，线性组合产生了向量<strong><em>b</em></strong>。结果显而易见。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-4.png" class="img-fluid figure-img"></p>
+<figcaption>图2-4</figcaption>
+</figure>
+</div>
+<center>
+图2-4 列图示：列通过权重(x,y,z)=(0,0,2)进行组合
+</center>
+<p><br></p>
+</section>
+<section id="从方程而来的矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="从方程而来的矩阵">从方程而来的矩阵</h2>
+<p>将方程中未知数的系数提取出来，就形成了系数矩阵<em>A</em>（以（3）为例）：</p>
+<p><span class="math display">\[A=\begin{bmatrix}1&amp;2&amp;3\\2&amp;5&amp;2\\6&amp;-3&amp;1\end{bmatrix}\]</span></p>
+<p>按行计算，方程是（3）；按列计算，方程是（4）；按矩阵方程就是（5）：</p>
+<p><span class="math display">\[\begin{equation}
+矩阵方程\ A\boldsymbol{x}=\boldsymbol{b}\qquad\begin{bmatrix}1&amp;2&amp;3\\2&amp;5&amp;2\\6&amp;-3&amp;1\end{bmatrix}\begin{bmatrix}x\\y\\z\end{bmatrix}=\begin{bmatrix}6\\4\\2\end{bmatrix}
+\end{equation}\]</span></p>
+<p><em>A</em>乘<strong><em>x</em></strong>怎么计算呢？我们可以按行或按列计算。</p>
+<p>按行相乘 <span class="math inline">\(A\boldsymbol{x}\)</span>就是点乘，每行去乘以列<span class="math inline">\(\boldsymbol{x}\)</span>： <span class="math display">\[\begin{equation}
+A\boldsymbol{x}=\begin{bmatrix}(\boldsymbol{row\ 1})\cdot \boldsymbol{x}\\(\boldsymbol{row\ 2})\cdot \boldsymbol{x}\\(\boldsymbol{row\ 3})\cdot \boldsymbol{x}\end{bmatrix}
+\end{equation}\]</span></p>
+<p>按列相乘 <span class="math inline">\(A\boldsymbol{x}\)</span>就是一个列向量的组合： <span class="math display">\[\begin{equation}
+A\boldsymbol{x}=x(\boldsymbol{column\ 1})+y(\boldsymbol{column\ 2})+z(\boldsymbol{column\ 3})
+\end{equation}\]</span></p>
+<p>下面举个例子，有两个矩阵<em>A</em>和<em>I</em>（单位矩阵）：</p>
+<p><span class="math display">\[A\boldsymbol{x}=\begin{bmatrix}1&amp;0&amp;0\\1&amp;0&amp;0\\1&amp;0&amp;0\end{bmatrix}\begin{bmatrix}4\\5\\6\end{bmatrix}=\begin{bmatrix}4\\4\\4\end{bmatrix}\qquad I\boldsymbol{x}=\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\begin{bmatrix}4\\5\\6\end{bmatrix}=\begin{bmatrix}4\\5\\6\end{bmatrix}\]</span></p>
+<p>可以试着从行和列的角度来进行运算。这个I矩阵是个特殊的存在，他只有一个主对角线上有数字1，其余都是0。我们把它叫做单位矩阵，就像乘以1一样：<span class="math inline">\(I\boldsymbol{x}=\boldsymbol{x}\)</span>。</p>
+</section>
+<section id="矩阵表示法" class="level2">
+<h2 class="anchored" data-anchor-id="矩阵表示法">矩阵表示法</h2>
+<p>2×2矩阵的第一行包含了<span class="math inline">\(a_{11}\)</span>和<span class="math inline">\(a_{12}\)</span>。第二行就是<span class="math inline">\(a_{21}\)</span>和<span class="math inline">\(a_{22}\)</span>了，但是吧这些下标打起来很费劲，所以我们使用A(i,j)来替代<span class="math inline">\(a_{ij}\)</span>：</p>
+<p><span class="math display">\[A=\begin{bmatrix}a_{11}&amp;a_{12}\\a_{21}&amp;a_{22}\end{bmatrix}=\begin{bmatrix}A(1,1)&amp;A(1,2)\\A(2,1)&amp;A(2,2)\end{bmatrix}\]</span></p>
+</section>
+<section id="matlab中的乘法" class="level2">
+<h2 class="anchored" data-anchor-id="matlab中的乘法">MATLAB中的乘法</h2>
+<p>首先我们来看MATLAB中怎么去定义<em>A</em>和<strong><em>x</em></strong>的。这是学习语言的第一步。一个在<span class="math inline">\(R^n\)</span>中的向量<strong><em>x</em></strong>可以看作是n×1的矩阵。矩阵一次输入一行，然后用分号分隔，或者直接按列输入然后使用<code>'</code>进行转置：</p>
+<p>A=[1 2 3; 2 5 2; 6 -3 1] x=[0 0 2]’ 或 x=[0; 0; 2]</p>
+<p>有三种方法来表示<span class="math inline">\(A\boldsymbol{x}\)</span>:</p>
+<ol type="1">
+<li>矩阵乘法：b=A*x</li>
+<li>按行乘：b=[A(1,:)<em>x; A(2,:)</em>x; A(3,:)*x]</li>
+<li>按列乘：b=A(;,1)<em>x(1)+A(:，2)</em>x(2)+A(:,3)*x(3)</li>
+</ol>
+<p>矩阵可能是按照列存储的，所以按列计算会快一些，且A*x也是按列计算的。</p>
+</section>
+<section id="其他语言" class="level2">
+<h2 class="anchored" data-anchor-id="其他语言">其他语言</h2>
+<p>有五种重要的语言都有相应的命令来实现<span class="math inline">\(A\boldsymbol{x}\)</span>：</p>
+<p>Julia: A<em>x Python: dot(A,x) R: A%</em>%x Mathematica: A.x Maple: A*x</p>
+<p>Julia，Python，R都是开源软件。Julia结构简单，速度块；Python流行率广；R专门为统计而生。</p>
+<p>Mathematica和Maple允许出现字母，而不仅仅是单纯的数字，作为MATLAB的符号工具，它们开源处理类似<span class="math inline">\(x^2-x\)</span>这样的符号运算。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2_solve_linear_equation.html" class="pagination-link  aria-label=" 二、解线性方程"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">二、解线性方程</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2_2_idea_of_elimination.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>2.2 消元法</span>">
+        <span class="nav-page-text"><span class="chapter-title">2.2 消元法</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>这是线性代数的章节翻译，也是学习笔记</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
