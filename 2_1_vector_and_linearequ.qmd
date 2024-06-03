@@ -6,8 +6,8 @@
 2.  向量方程$A\boldsymbol{x}=x_{1}\boldsymbol{a}_{1}+\cdots+x_{n}\boldsymbol{a}_{n}=\boldsymbol{b}$：其中$a_{1},a_{2},\dots,a_{n}$是由*A*的列组成。
 3.  当$\boldsymbol{b}=\boldsymbol{0}$的时候，$A\boldsymbol{x}$也为0，一种可能的情况是$\boldsymbol{x}=(0,\dots,0)$。
 4.  关于$A\boldsymbol{x}=\boldsymbol{b}$的行模式（row picture）：来自m行的m个方程确定了m个平面的交点为$\boldsymbol{x}$。
-5.  点积给出了方程中的每个平面：$(\bold{row\ 1}) \cdot \boldsymbol{x}=b_{1},\dots ,(\bold{row\ 2}) \cdot \boldsymbol{x}=b_{m}$。
-6.  当$\boldsymbol{b}=\boldsymbol{0}$的时候，所有平面$(\bold{row\ i}) \cdot \boldsymbol{x}=0$相交于$\boldsymbol{x}=(0,0,\dots,0)$。
+5.  点积给出了方程中的每个平面：$(\mathbf{row\ 1}) \cdot \boldsymbol{x}=b_{1},\dots ,(\mathbf{row\ 2}) \cdot \boldsymbol{x}=b_{m}$。
+6.  当$\boldsymbol{b}=\boldsymbol{0}$的时候，所有平面$(\mathbf{row\ i}) \cdot \boldsymbol{x}=0$相交于$\boldsymbol{x}=(0,0,\dots,0)$。
 
 ---
 
