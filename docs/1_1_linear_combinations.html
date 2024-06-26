@@ -302,9 +302,9 @@ window.Quarto = {
 <li>c<strong><em>u</em></strong>+d<strong><em>v</em></strong>+e<strong><em>w</em></strong>填充了整个三维空间</li>
 </ol>
 <p>当然，也要去考虑一些特殊情况，上述是及其一般的情况。设想一下，如果<strong><em>w</em></strong>恰好是c<strong><em>u</em></strong>+d<strong><em>v</em></strong>的话，那也就意味着向量<strong><em>w</em></strong>就在前两个向量的平面上。<strong><em>uvw</em></strong>的组合就不会在<strong><em>uv</em></strong>平面外了。因此就得不到整个三维空间了。（你可以设想一下，xyz坐标系的建立是怎么回事，这是最标准的坐标系，即相互垂直，可以覆盖到所有三维平面上的点。但是如果z轴在xy平面上呢，这个z轴就废了，就只能是表示二维平面的点了。c<strong><em>u</em></strong>+d<strong><em>v</em></strong>等于<strong><em>w</em></strong>也就可以看作这种情况的一般化。类似的也就有了c<strong><em>u</em></strong>刚好等于<strong><em>v</em></strong>的特殊情况之类）</p>
-<p>总之，线性组合<strong><em>u</em></strong>或<strong><em>uv</em></strong>或<strong><em>uvw</em></strong>。在三维空间上，所有的组合填充了一条线，然后是一个平面，然后是整个空间<span class="math inline">\(\bold{R}^3\)</span>。</p>
+<p>总之，线性组合<strong><em>u</em></strong>或<strong><em>uv</em></strong>或<strong><em>uvw</em></strong>。在三维空间上，所有的组合填充了一条线，然后是一个平面，然后是整个空间<span class="math inline">\(\mathbf{R}^3\)</span>。</p>
 <p>应用：</p>
-<p>1.1 A 向量<strong><em>v</em></strong>=(1,1,0)和<strong><em>w</em></strong>=(0,1,1)的线性组合填充了一个平面<span class="math inline">\(\bold{R}^3\)</span>。那么，如何找到一个不在该平面的向量呢。</p>
+<p>1.1 A 向量<strong><em>v</em></strong>=(1,1,0)和<strong><em>w</em></strong>=(0,1,1)的线性组合填充了一个平面<span class="math inline">\(\mathbf{R}^3\)</span>。那么，如何找到一个不在该平面的向量呢。</p>
 <p>首先列出<strong><em>v</em></strong>和<strong><em>w</em></strong>的所有线性组合c<strong><em>v</em></strong>+d<strong><em>w</em></strong>：</p>
 <p><span class="math inline">\(c\boldsymbol{v}+d\boldsymbol{w}=c\begin{bmatrix} 1\\1\\0 \end{bmatrix}+d\begin{bmatrix} 0\\1\\1 \end{bmatrix}=\begin{bmatrix} c\\c+d\\d \end{bmatrix}\)</span></p>
 <p>因此，此平面的向量，第2个参数总是1、3之和。因此诸如(1,2,3)不在这个平面.</p>

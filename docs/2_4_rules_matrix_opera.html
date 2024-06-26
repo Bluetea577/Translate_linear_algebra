@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./2_5_inverse_matrices.html" rel="next">
 <link href="./2_3_elimination_using_matrices.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,6 +127,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +234,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#第二种和第三章方法行和列" id="toc-第二种和第三章方法行和列" class="nav-link active" data-scroll-target="#第二种和第三章方法行和列">第二种和第三章方法：行和列</a></li>
+  <li><a href="#第四种方法列乘以行" id="toc-第四种方法列乘以行" class="nav-link" data-scroll-target="#第四种方法列乘以行">第四种方法：列乘以行</a></li>
+  <li><a href="#矩阵运算定律" id="toc-矩阵运算定律" class="nav-link" data-scroll-target="#矩阵运算定律">矩阵运算定律</a></li>
+  <li><a href="#块矩阵和块乘法" id="toc-块矩阵和块乘法" class="nav-link" data-scroll-target="#块矩阵和块乘法">块矩阵和块乘法</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_4_rules_matrix_opera.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,8 +267,121 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<ol type="1">
+<li>矩阵A有n列乘以矩阵B有n行：<span class="math inline">\(A_{m\times n}B_{n\times p}=C_{m\times p}\)</span>。</li>
+<li><span class="math inline">\(AB=C\)</span>的每个分项都是一个点乘：<span class="math inline">\(C_{ij}=(A的i行)\cdot (B的j列)\)</span>。</li>
+<li>AB乘以C等于A乘以BC。</li>
+<li>有更多的方法来计算AB：（A乘B的列）（A的行乘B）（列乘行）。</li>
+<li>往往不会有AB=BA。大多数情况下，AB不能互通。</li>
+<li>矩阵可以按块相乘：<span class="math inline">\(A=[A_1\quad A_2]\)</span>乘以<span class="math inline">\(B=\begin{bmatrix}B_1\\B_2\end{bmatrix}\)</span>同<span class="math inline">\(A_1B_1+A_2B_2\)</span>。</li>
+</ol>
+<hr>
+<p>矩阵乘法不像矩阵加法，矩阵加法只要维度相同就能相加，而矩阵乘法是否可以执行，需要看是否满足：<strong>如果要实现矩阵乘法AB，则需要A有n列，B必须有n行。</strong></p>
+<p>而且我们知道A(BC)=(AB)C的。另外如果A是m×n，B是n×p的话，那么AB就是m×p。这些都是线性代数的规则。</p>
+<p>首先我们来看乘法运算的第一个方法，也是常用的方法。<strong>将A的每行与B的每列取点积</strong>：</p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+<ol type="1">
+<li>AB的第i行第j列分项就是：(A的i行) 点乘 (B的j列)
+</li></ol></td>
+</tr></tbody></table>
+
+<p>就像下图2-8所示：</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-8.jpg" class="img-fluid figure-img"></p>
+<figcaption>图2-8</figcaption>
+</figure>
+</div>
+<center>
+图2-8 这里的i是2，j是3
+</center>
+<p><br></p>
+<p>如果AB都是方阵n×n的话，会有<span class="math inline">\(n^2\)</span>个点积，每个点积也都是由n个乘法相加的，所以AB用了<span class="math inline">\(n^3\)</span>个单独的乘法运算。后来呢也有人通过将n×n分解成2×2的块的方法来减少大矩阵的计算。计算数量下降到了<span class="math inline">\(n^{2.376}\)</span>。但是科学计算还是需要常规的<span class="math inline">\(n^3\)</span>次运算的。</p>
+<p>一行乘一列以及一列乘一行的操作都是合理的。前者叫做内积，这也是点积的另一个名称。后者叫做外积，这些都是极端情况的矩阵乘法。</p>
+<section id="第二种和第三章方法行和列" class="level2">
+<h2 class="anchored" data-anchor-id="第二种和第三章方法行和列">第二种和第三章方法：行和列</h2>
+<p>A乘以B的一列，其结果是AB的一列。这一列中，我们将A的每一列进行组合，这就是矩阵乘法的列算法：</p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+<ol start="2" type="1">
+<li>矩阵A乘以矩阵B的每列：A[b1 … bp]=[Ab1 … Abp]
+</li></ol></td>
+</tr></tbody></table>
+
+<p>行算法刚好反过来，A的每行都乘以整个矩阵B。结果就是AB的每行：</p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+<ol start="3" type="1">
+<li>矩阵A的每行乘以矩阵B：[A的i行]B=[AB的i行]
+</li></ol></td>
+</tr></tbody></table>
+
+</section>
+<section id="第四种方法列乘以行" class="level2">
+<h2 class="anchored" data-anchor-id="第四种方法列乘以行">第四种方法：列乘以行</h2>
+<ol start="4" type="1">
+<li>将A的第1到n列乘以B的第1到n行。然后将这些矩阵相加：</li>
+</ol>
+<p><span class="math display">\[\begin{bmatrix}col1&amp;col2&amp;col3\\.&amp;.&amp;.\\.&amp;.&amp;.\end{bmatrix}\begin{bmatrix}row1&amp;.&amp;.&amp;.\\row2&amp;.&amp;.&amp;.\\row3&amp;.&amp;.&amp;.\end{bmatrix}=(col1)(row1)+(col2)(row2)+(col3)(row3)\]</span></p>
+<p>比如2×2的矩阵，注意看：</p>
+<p><span class="math display">\[AB=\begin{bmatrix}\boldsymbol{a}&amp;b\\ \boldsymbol{c}&amp;d\end{bmatrix}\begin{bmatrix}\boldsymbol{E}&amp;\boldsymbol{F}\\G&amp;H\end{bmatrix}=\begin{bmatrix}\boldsymbol{aE}+bG&amp;\boldsymbol{aF}+bH\\\boldsymbol{cE}+dG&amp;\boldsymbol{cF}+dH\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+行列相乘再相加：\boldsymbol{AB}=\begin{bmatrix}\boldsymbol{a}\\\boldsymbol{c}\end{bmatrix}\begin{bmatrix}\boldsymbol{E}&amp;\boldsymbol{F}\end{bmatrix}+\begin{bmatrix}b\\d\end{bmatrix}\begin{bmatrix}G&amp;H\end{bmatrix}
+\end{equation}\]</span></p>
+</section>
+<section id="矩阵运算定律" class="level2">
+<h2 class="anchored" data-anchor-id="矩阵运算定律">矩阵运算定律</h2>
+<p>矩阵满足的六条定律，其中涉及加法的定律都很简单，下面是三条：</p>
+<p><span class="math inline">\(A+B=B+A（交换律）\)</span> <span class="math inline">\(c(A+B)=cA+cB（分配律）\)</span> <span class="math inline">\(A+(B+C)=(A+B)+C（结合律）\)</span></p>
+<p>三条乘法定律：</p>
+<p><span class="math inline">\(AB=BA（交换律通常不存在）\)</span> <span class="math inline">\(A(B+C)=AB+AC（左侧分配律）\)</span> <span class="math inline">\((A+B)C=AC+BC（右侧分配律）\)</span> <span class="math inline">\(A(BC)=(AB)C（ABC结合律）\)</span></p>
+<p>但是，AI=IA是存在的。所有的方阵都可以与I或者cI交换。</p>
+<p>还有以下定律也是存在的：</p>
+<p><span class="math inline">\(A^p=AAA\cdots A(p个)\qquad(A^p)(A^q)=A^{p+q}\qquad (A^p)^q=A^{pq}\)</span></p>
+<p>当pq是0或负值的时候，该公式依然存在。前提是A的逆矩阵<span class="math inline">\(A^{-1}\)</span>存在，然后<span class="math inline">\(A^0=I\)</span>。</p>
+</section>
+<section id="块矩阵和块乘法" class="level2">
+<h2 class="anchored" data-anchor-id="块矩阵和块乘法">块矩阵和块乘法</h2>
+<p>矩阵可以被分割成块。下面是一个4×6的矩阵被分割成2×2的块的例子，这里每块都是一个单位矩阵I：</p>
+<p><span class="math display">\[A=\left[\begin{array}{cc|cc|cc}
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+\hline
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+\end{array}\right]=\begin{bmatrix}I&amp;I&amp;I\\I&amp;I&amp;I \end{bmatrix}\]</span></p>
+<p>如果B也是4×6矩阵也可以如此分块，就可以执行A+B的块相加。</p>
+<p>之前其实已经使用过块矩阵的概念了。当时的增广矩阵就是将向量b加到矩阵A的右侧。然后[A b]可以被消除矩阵相乘得到[EA Eb]。</p>
+<p>块乘法：如果A的块可以乘以B的块，那么AB的块乘法就是允许的。切块后A的列必须要匹配B的行。</p>
+<p><span class="math display">\[\begin{equation}
+\begin{bmatrix}A_{11}&amp;A_{12}\\A_{21}&amp;A_{22}\end{bmatrix}\begin{bmatrix}B_{11}\\B_{21}\end{bmatrix}=\begin{bmatrix}A_{11}B_{11}+A_{12}B_{21}\\A_{21}B_{11}+A_{22}B_{21}\end{bmatrix}
+\end{equation}\]</span></p>
+<p>有一个特殊的块乘法的例子，可以用于推导出矩阵运算的方法四，列乘行：</p>
+<p>矩阵AB被分为n列和n行：</p>
+<p><span class="math display">\[\begin{equation}[a_1\cdots a_n]\begin{bmatrix}b_1\\.\\.\\.\\b_n\end{bmatrix}=[a_1b_1+\cdots +a_nb_n]\end{equation}\]</span></p>
+<p>下面我们来看如何对块执行消去呢？假设我们有一个四个块组成的矩阵，来看看E如何消去C块的：</p>
+<p><span class="math display">\[\left[ \begin{array}{c|c}
+I&amp;0\\
+\hline
+-CA^{-1}&amp;I
+\end{array}\right]
+\left[ \begin{array}{c|c}
+A&amp;B\\
+\hline
+C&amp;D
+\end{array}\right]
+\left[\begin{array}{c|c}
+A&amp;B\\
+\hline
+0&amp;D-CA^{-1}B
+\end{array}\right]
+\]</span></p>
+<p>这是普通的消去，一次一列。主元是A，最后的一个块是<span class="math inline">\(D-CA^{-1}B\)</span>，他就像d-cb/a一样。这被称作是舒尔体（Schur complement）。</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +791,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_4_rules_matrix_opera.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>

@@ -24,7 +24,7 @@
     "href": "1_1_linear_combinations.html",
     "title": "1.1 向量和线性组合",
     "section": "",
-    "text": "矢量和矢量之间是由区别的，就像你不能把苹果和橘子放在一起一样。看下面的二维向量：\nColumn vector v \\(\\boldsymbol{v}=\\begin{bmatrix} v_{1}\\\\v_{2} \\end{bmatrix}\\)，其中\\(v_{1}\\)是向量\\(\\boldsymbol{v}\\)的第一个分量，\\(v_{2}\\)是向量\\(\\boldsymbol{v}\\)的第二个分量。\n我们是不会将\\(v_{1}\\)和\\(v_{2}\\)相加的，但是我们可以执行向量相加：\n向量加法 \\(\\boldsymbol{v}=\\begin{bmatrix}v_{1}\\\\v_{2} \\end{bmatrix}\\) 和 \\(\\boldsymbol{w}=\\begin{bmatrix} w_{1}\\\\w_{2} \\end{bmatrix}\\)执行的是对应分量相加：\\(\\boldsymbol{v+w}=\\begin{bmatrix} v_{1}+w_{1}\\\\v_{2}+w_{2} \\end{bmatrix}\\)。\n另外，减法也是该规则，不再赘述。\n还有一种运算是标量乘法。标量乘以向量，执行向量的每个分量的分别相乘：\n标量乘法 \\(2\\boldsymbol{v}=\\begin{bmatrix} 2v_{1}\\\\2v_{2} \\end{bmatrix}=\\boldsymbol{v+v} \\quad -\\boldsymbol{v}=\\begin{bmatrix} -v_{1}\\\\-v_{2} \\end{bmatrix}\\)。\n另外需要注意，\\(-\\boldsymbol{v}\\)和\\(\\boldsymbol{v}\\)之和是零向量，但是这个零向量不等于数字零。0是由分量0和0组成的。线性代数就是建立在这些向量运算上的。\n我们将向量加法和标量乘法结合起来就得到了线性组合的方法。就像：\\(c\\boldsymbol{v}+d\\boldsymbol{w}\\)。\n四种特殊的向量组合是：和、差、零以及标量相乘：\n\n\\(1\\boldsymbol{v}+1\\boldsymbol{w}=前面所讲向量之和\\)\n\\(1\\boldsymbol{v}-1\\boldsymbol{w}=前面所讲向量之差\\)\n\\(0\\boldsymbol{v}+0\\boldsymbol{w}=\\boldsymbol{零向量}\\)\n\\(c\\boldsymbol{v}+0\\boldsymbol{w}=在v方向上的向量c\\boldsymbol{v}\\)\n\n零向量总会是一个可能的组合。每次我们构建一个向量空间，就会有一个零向量被包含进去。整个向量空间，包含了所有v和w的组合。\n下图展示了向量的可视化。向量可以使用箭头表示，也可以用平面上的点来表示。\n\n\n\n1-1\n\n\n那么，向量里有三个分量呢。两个分量的向量对应于xy平面上的点，而三个分量时这个xy平面被xyz三维空间所取代。另外，请注意，向量(x,y)与向量(x,y,0)是不同的。\n现在开始 \\(\\boldsymbol{v}=\\begin{bmatrix} 1 \\\\ 1 \\\\ -1 \\end{bmatrix}\\)也可以被写为\\(\\boldsymbol{v}=(1,1,-1)\\)\n使用行的形式来写是为了节省空间，但v=(1,1,-1)绝不是行向量！要时刻记着，它是一个暂时躺着的列向量，与行向量[1,1,-1]是完全不同的。这个1行3列的行向量其实是3行1列的列向量的转置。\n三维空间中，向量相加仍是各个分量加和。因此，4维、5维或n维中的向量加法都是如此。v，w，v+w在向量空间中表示出来的话，在同一个平面上。\n三维空间中典型的线性组合是\\(\\boldsymbol{u}+4\\boldsymbol{v}-2\\boldsymbol{w}\\)：\n\\(\\begin{bmatrix} 1\\\\0\\\\3 \\end{bmatrix} + 4\\begin{bmatrix} 1\\\\2\\\\1 \\end{bmatrix}-2\\begin{bmatrix} 2\\\\3\\\\-1 \\end{bmatrix}=\\begin{bmatrix} 1\\\\2\\\\9 \\end{bmatrix}\\)\n接下来有几个重要的问题：\n对于一个向量u，线性组合cu是其唯一的线性组合可能。对于两个向量cu+dv，对于三个向量cu+dv+ew，其中cde都不做限制，uvw假设是三维空间中的向量，那么：\n\ncu的图像是如何？\ncu+dv图像是如何？\ncu+dv+ew图像是如何？\n\n极端情况下，他们都是零向量，那么每个组合都是零。如果它们是典型的非零向量的话：\n\ncu是通过(0,0,0)填充的一条直线\ncu+dv是通过(0,0,0)填充的一个平面\ncu+dv+ew填充了整个三维空间\n\n当然，也要去考虑一些特殊情况，上述是及其一般的情况。设想一下，如果w恰好是cu+dv的话，那也就意味着向量w就在前两个向量的平面上。uvw的组合就不会在uv平面外了。因此就得不到整个三维空间了。（你可以设想一下，xyz坐标系的建立是怎么回事，这是最标准的坐标系，即相互垂直，可以覆盖到所有三维平面上的点。但是如果z轴在xy平面上呢，这个z轴就废了，就只能是表示二维平面的点了。cu+dv等于w也就可以看作这种情况的一般化。类似的也就有了cu刚好等于v的特殊情况之类）\n总之，线性组合u或uv或uvw。在三维空间上，所有的组合填充了一条线，然后是一个平面，然后是整个空间\\(\\bold{R}^3\\)。\n应用：\n1.1 A 向量v=(1,1,0)和w=(0,1,1)的线性组合填充了一个平面\\(\\bold{R}^3\\)。那么，如何找到一个不在该平面的向量呢。\n首先列出v和w的所有线性组合cv+dw：\n\\(c\\boldsymbol{v}+d\\boldsymbol{w}=c\\begin{bmatrix} 1\\\\1\\\\0 \\end{bmatrix}+d\\begin{bmatrix} 0\\\\1\\\\1 \\end{bmatrix}=\\begin{bmatrix} c\\\\c+d\\\\d \\end{bmatrix}\\)\n因此，此平面的向量，第2个参数总是1、3之和。因此诸如(1,2,3)不在这个平面.\n另外由于该平面穿过(0,0,0)我们知道n=(1,-1,1)垂直于这个平面。后面我们将会学到可以通过点积来确认垂直关系:\\(\\boldsymbol{v} \\cdot \\boldsymbol{n}=0\\)和\\(\\boldsymbol{w} \\cdot \\boldsymbol{n}=0\\)。垂直向量点积为0。\n1.1 B 找到c和d的两个方程，使得线性组合cv+dw等于b：\n\\(\\boldsymbol{v}=\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}\\quad \\boldsymbol{w}=\\begin{bmatrix} -1\\\\2 \\end{bmatrix} \\quad \\boldsymbol{b}=\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\n应用数学中，解决问题通常是两个部分内容：\n\n建模部分 用一组方程来表示问题\n计算部分 用快速准确的算法解决问题\n\n这里我们只列出方程，后续第二章在学习解法。例子可以用一个线性代数的基础模型来拟合：\n找到n个数字，\\(c_{1},\\dots,c_{n}\\)使得\\(c_{1}\\boldsymbol{v}_{1}+\\cdots+c_{n}\\boldsymbol{v}_{n}=\\boldsymbol{b}\\)，这里n=2：\n\\(cv+dw=b\\qquad c\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}+d\\begin{bmatrix} -1\\\\2 \\end{bmatrix} =\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\nc，d可以由以下方程得出：\n两个原始方程 \\(\\qquad \\begin{matrix} 2c-d=1\\\\-c+2d=0 \\end{matrix}\\)\n每个方程产生一条直线，两条直线相交于c=2/3，d=1/3。当然我们可以用矩阵方程的形式来展现：\n2×2矩阵 \\(\\qquad \\begin{bmatrix} 2&-1\\\\-1&2 \\end{bmatrix} \\begin{bmatrix} c\\\\d \\end{bmatrix}=\\begin{bmatrix}1\\\\0\\end{bmatrix}\\)",
+    "text": "矢量和矢量之间是由区别的，就像你不能把苹果和橘子放在一起一样。看下面的二维向量：\nColumn vector v \\(\\boldsymbol{v}=\\begin{bmatrix} v_{1}\\\\v_{2} \\end{bmatrix}\\)，其中\\(v_{1}\\)是向量\\(\\boldsymbol{v}\\)的第一个分量，\\(v_{2}\\)是向量\\(\\boldsymbol{v}\\)的第二个分量。\n我们是不会将\\(v_{1}\\)和\\(v_{2}\\)相加的，但是我们可以执行向量相加：\n向量加法 \\(\\boldsymbol{v}=\\begin{bmatrix}v_{1}\\\\v_{2} \\end{bmatrix}\\) 和 \\(\\boldsymbol{w}=\\begin{bmatrix} w_{1}\\\\w_{2} \\end{bmatrix}\\)执行的是对应分量相加：\\(\\boldsymbol{v+w}=\\begin{bmatrix} v_{1}+w_{1}\\\\v_{2}+w_{2} \\end{bmatrix}\\)。\n另外，减法也是该规则，不再赘述。\n还有一种运算是标量乘法。标量乘以向量，执行向量的每个分量的分别相乘：\n标量乘法 \\(2\\boldsymbol{v}=\\begin{bmatrix} 2v_{1}\\\\2v_{2} \\end{bmatrix}=\\boldsymbol{v+v} \\quad -\\boldsymbol{v}=\\begin{bmatrix} -v_{1}\\\\-v_{2} \\end{bmatrix}\\)。\n另外需要注意，\\(-\\boldsymbol{v}\\)和\\(\\boldsymbol{v}\\)之和是零向量，但是这个零向量不等于数字零。0是由分量0和0组成的。线性代数就是建立在这些向量运算上的。\n我们将向量加法和标量乘法结合起来就得到了线性组合的方法。就像：\\(c\\boldsymbol{v}+d\\boldsymbol{w}\\)。\n四种特殊的向量组合是：和、差、零以及标量相乘：\n\n\\(1\\boldsymbol{v}+1\\boldsymbol{w}=前面所讲向量之和\\)\n\\(1\\boldsymbol{v}-1\\boldsymbol{w}=前面所讲向量之差\\)\n\\(0\\boldsymbol{v}+0\\boldsymbol{w}=\\boldsymbol{零向量}\\)\n\\(c\\boldsymbol{v}+0\\boldsymbol{w}=在v方向上的向量c\\boldsymbol{v}\\)\n\n零向量总会是一个可能的组合。每次我们构建一个向量空间，就会有一个零向量被包含进去。整个向量空间，包含了所有v和w的组合。\n下图展示了向量的可视化。向量可以使用箭头表示，也可以用平面上的点来表示。\n\n\n\n1-1\n\n\n那么，向量里有三个分量呢。两个分量的向量对应于xy平面上的点，而三个分量时这个xy平面被xyz三维空间所取代。另外，请注意，向量(x,y)与向量(x,y,0)是不同的。\n现在开始 \\(\\boldsymbol{v}=\\begin{bmatrix} 1 \\\\ 1 \\\\ -1 \\end{bmatrix}\\)也可以被写为\\(\\boldsymbol{v}=(1,1,-1)\\)\n使用行的形式来写是为了节省空间，但v=(1,1,-1)绝不是行向量！要时刻记着，它是一个暂时躺着的列向量，与行向量[1,1,-1]是完全不同的。这个1行3列的行向量其实是3行1列的列向量的转置。\n三维空间中，向量相加仍是各个分量加和。因此，4维、5维或n维中的向量加法都是如此。v，w，v+w在向量空间中表示出来的话，在同一个平面上。\n三维空间中典型的线性组合是\\(\\boldsymbol{u}+4\\boldsymbol{v}-2\\boldsymbol{w}\\)：\n\\(\\begin{bmatrix} 1\\\\0\\\\3 \\end{bmatrix} + 4\\begin{bmatrix} 1\\\\2\\\\1 \\end{bmatrix}-2\\begin{bmatrix} 2\\\\3\\\\-1 \\end{bmatrix}=\\begin{bmatrix} 1\\\\2\\\\9 \\end{bmatrix}\\)\n接下来有几个重要的问题：\n对于一个向量u，线性组合cu是其唯一的线性组合可能。对于两个向量cu+dv，对于三个向量cu+dv+ew，其中cde都不做限制，uvw假设是三维空间中的向量，那么：\n\ncu的图像是如何？\ncu+dv图像是如何？\ncu+dv+ew图像是如何？\n\n极端情况下，他们都是零向量，那么每个组合都是零。如果它们是典型的非零向量的话：\n\ncu是通过(0,0,0)填充的一条直线\ncu+dv是通过(0,0,0)填充的一个平面\ncu+dv+ew填充了整个三维空间\n\n当然，也要去考虑一些特殊情况，上述是及其一般的情况。设想一下，如果w恰好是cu+dv的话，那也就意味着向量w就在前两个向量的平面上。uvw的组合就不会在uv平面外了。因此就得不到整个三维空间了。（你可以设想一下，xyz坐标系的建立是怎么回事，这是最标准的坐标系，即相互垂直，可以覆盖到所有三维平面上的点。但是如果z轴在xy平面上呢，这个z轴就废了，就只能是表示二维平面的点了。cu+dv等于w也就可以看作这种情况的一般化。类似的也就有了cu刚好等于v的特殊情况之类）\n总之，线性组合u或uv或uvw。在三维空间上，所有的组合填充了一条线，然后是一个平面，然后是整个空间\\(\\mathbf{R}^3\\)。\n应用：\n1.1 A 向量v=(1,1,0)和w=(0,1,1)的线性组合填充了一个平面\\(\\mathbf{R}^3\\)。那么，如何找到一个不在该平面的向量呢。\n首先列出v和w的所有线性组合cv+dw：\n\\(c\\boldsymbol{v}+d\\boldsymbol{w}=c\\begin{bmatrix} 1\\\\1\\\\0 \\end{bmatrix}+d\\begin{bmatrix} 0\\\\1\\\\1 \\end{bmatrix}=\\begin{bmatrix} c\\\\c+d\\\\d \\end{bmatrix}\\)\n因此，此平面的向量，第2个参数总是1、3之和。因此诸如(1,2,3)不在这个平面.\n另外由于该平面穿过(0,0,0)我们知道n=(1,-1,1)垂直于这个平面。后面我们将会学到可以通过点积来确认垂直关系:\\(\\boldsymbol{v} \\cdot \\boldsymbol{n}=0\\)和\\(\\boldsymbol{w} \\cdot \\boldsymbol{n}=0\\)。垂直向量点积为0。\n1.1 B 找到c和d的两个方程，使得线性组合cv+dw等于b：\n\\(\\boldsymbol{v}=\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}\\quad \\boldsymbol{w}=\\begin{bmatrix} -1\\\\2 \\end{bmatrix} \\quad \\boldsymbol{b}=\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\n应用数学中，解决问题通常是两个部分内容：\n\n建模部分 用一组方程来表示问题\n计算部分 用快速准确的算法解决问题\n\n这里我们只列出方程，后续第二章在学习解法。例子可以用一个线性代数的基础模型来拟合：\n找到n个数字，\\(c_{1},\\dots,c_{n}\\)使得\\(c_{1}\\boldsymbol{v}_{1}+\\cdots+c_{n}\\boldsymbol{v}_{n}=\\boldsymbol{b}\\)，这里n=2：\n\\(cv+dw=b\\qquad c\\begin{bmatrix} 2\\\\-1 \\end{bmatrix}+d\\begin{bmatrix} -1\\\\2 \\end{bmatrix} =\\begin{bmatrix} 1\\\\0 \\end{bmatrix}\\)\nc，d可以由以下方程得出：\n两个原始方程 \\(\\qquad \\begin{matrix} 2c-d=1\\\\-c+2d=0 \\end{matrix}\\)\n每个方程产生一条直线，两条直线相交于c=2/3，d=1/3。当然我们可以用矩阵方程的形式来展现：\n2×2矩阵 \\(\\qquad \\begin{bmatrix} 2&-1\\\\-1&2 \\end{bmatrix} \\begin{bmatrix} c\\\\d \\end{bmatrix}=\\begin{bmatrix}1\\\\0\\end{bmatrix}\\)",
     "crumbs": [
       "一、向量",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>1.1 向量和线性组合</span>"
@@ -156,7 +156,7 @@
     "href": "2_2_idea_of_elimination.html",
     "title": "2.2 消元法",
     "section": "",
-    "text": "对于m=n=3，有三个方程\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)和三个未知数。\n前两个方程是\\(a_{11}x_1+\\cdots=b_1\\)和\\(a_{21}x_1+\\cdots=b_2\\)。\n将第一个方程乘以\\(a_{21}/a_{11}\\)然后减去第二个方程：\\(x_1\\)就完成了消元。\n角落的\\(a_{11}\\)项是第一个主元，\\(a_{21}/a_{11}\\)是第一个乘数。\n消去\\(x_1\\)需要从剩下的所有方程i中减去\\(a_{i1}/a_{11}\\)乘以第一个方程。\n现在上一个n-1个方程包含了n-1个未知数。同样的方法去消去\\(x_2\\)。\n主元中如果出现了0那么就会无法消元。交换两个方程可能会解决这个事情。\n\n\n这章解释了求解线性方程的具体方法，也就是消元法。看下面的2×2矩阵，消元前x和y是在两个方程中的，消元后，第一个未知数x在第二个方程中消失了：\n\\[\\begin{align}\n消元前：\\quad \\begin{matrix}x-2y=1\\\\3x+2y=11\\end{matrix}\\qquad消元后：\\quad \\begin{matrix}x-2y=1\\\\8y=8\\end{matrix} \\notag\n\\end{align}\\]",
+    "text": "消元法可能存在的问题\n通常情况下，消元法产生的主元会帮我们解开方程。但是也有可能会失败的。一些情况，可能会让我们去除以0，这是做不到的。可能会有一些方法来调整后继续，或者会无法消元。\n下面两个例子代表性的说明了两种失败的情况。例1因为无解而失败；例2因为有太多解而失败；例3在交换方程后成功了。\n例1：\n\\[\\begin{matrix}x-2y=1\\\\3x-6y=11\\end{matrix}\\qquad \\begin{matrix}消元后\\\\（方程2减去方程1乘3）\\end{matrix} \\begin{matrix}x-2y=1\\\\0y=8\\end{matrix}\\]\n明显无解。看行图列图也能看出，两条线无交点，两条向量处于同一直线。那么如果我们将方程右边改为1，3，整条直线都是解，也就是例2。\n例2： \\[\\begin{matrix}x-2y=1\\\\3x-6y=3\\end{matrix}\\qquad \\begin{matrix}消元后\\\\（方程2减去方程1乘3）\\end{matrix} \\begin{matrix}x-2y=1\\\\0y=0\\end{matrix}\\]\n这里所有的y都可以满足0y=0。它的行图列图如下，可以看到方程有无数解。\n例3：\n主元为0，但是可以通过交换来解决：\n\\[\\begin{matrix}0x+2y=4\\\\3x-2y=5\\end{matrix}\\qquad 交换两个方程 \\begin{matrix}3x-2y=5\\\\2y=4\\end{matrix}\\]\n交换后，方程本身就是三角形的了。已经可以回代进行求解了。\n例子1和2是奇异的——它们没有第二个主元了。例子3是非奇异的——它们有完整的主元且只有一个解。奇异的方程没有解或有无穷多解，主元必须不为0，因为我们要除以它们。",
     "crumbs": [
       "二、解线性方程",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>2.2 消元法</span>"
@@ -170,6 +170,269 @@
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "2_solve_linear_equation.html",
+    "href": "2_solve_linear_equation.html",
+    "title": "二、解线性方程",
+    "section": "",
+    "text": "通过求解线性方程，来一步一步的了解线性代数中矩阵的乘法。关于矩阵更加深入的探索后，你会发现，线性代数的主要思想是因式分解。",
+    "crumbs": [
+      "二、解线性方程"
+    ]
+  },
+  {
+    "objectID": "2_2_idea_of_elimination.html#消元法可能存在的问题",
+    "href": "2_2_idea_of_elimination.html#消元法可能存在的问题",
+    "title": "2.2 消元法",
+    "section": "",
+    "text": "图2-6\n\n\n\n图2-6 例1的行图和列图：无解\n\n\n\n\n\n\n\n图2-7\n\n\n\n图2-7 例2的行图列图：无数解",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2.2 消元法</span>"
+    ]
+  },
+  {
+    "objectID": "2_2_idea_of_elimination.html#三个方程三个未知数",
+    "href": "2_2_idea_of_elimination.html#三个方程三个未知数",
+    "title": "2.2 消元法",
+    "section": "三个方程三个未知数",
+    "text": "三个方程三个未知数\n其实方法是类似的，或许你没有学习过本章节也早已经会解这些方程了，但是请耐心，经过这样的过程，将会对于消元有更加深刻的理解。让我们继续：\n如下方程：\n\\[\\begin{align}\n2x+4y-2z&=2 \\notag\\\\\n4x+9y-3z&=8\\\\\n-2x-3y+7z&=10 \\notag\n\\end{align}\\]\n怎么做？第一个主元是第一行的2。下面我们想要消去的主元是4，第一个乘数就是4/2=2。我们通过乘以\\(l_{21}=2\\)，然后将其减去来消去第二个方程的主元得到y+z=4。第三行同理，乘数为-1，消去后得到y+5z=12。\n然后我们就得到了1y+1z=4和1y+5z=12，接下来就哭呀进一步去消除y了，经过操作后我们原始的\\(A\\boldsymbol{x}=\\boldsymbol{b}\\)已经变成了上三角的\\(U\\boldsymbol{x}=\\boldsymbol{c}\\)了:\n\\[\\begin{align}\n2x+4y-2z&=2 \\qquad 2x+4y-2z&=2\\notag\\\\\n4x+9y-3z&=8\\qquad \\qquad  1y+1z&=4\\\\\n-2x-3y+7z&=10 \\qquad \\qquad \\qquad 4z&=8\\notag\n\\end{align}\\]\n接着回代就可以解了。解出(x,y,z)=(-1,2,2)。行图展示了三个平面通过x的解的点。列图展示了列向量的组合：\n\\[\\begin{equation}\nA\\boldsymbol{x}=(-1)\\begin{bmatrix}2\\\\4\\\\-2\\end{bmatrix}+2\\begin{bmatrix}4\\\\9\\\\-3\\end{bmatrix}+2\\begin{bmatrix}-2\\\\-3\\\\7\\end{bmatrix}=\\begin{bmatrix}2\\\\8\\\\10\\end{bmatrix}=\\boldsymbol{b}\n\\end{equation}\\]\n4×4的或者n×n的方程，消元也是同样的方法：\n\n第1列：使用第一个方程在第一个主元下创建0\n第2列：使用新的方程在第二个主元下创建0\n第3-n列：持续按上述方法消元来制作上三角U",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2.2 消元法</span>"
+    ]
+  },
+  {
+    "objectID": "2_3_elimination_using_matrices.html",
+    "href": "2_3_elimination_using_matrices.html",
+    "title": "2.3 矩阵消元",
+    "section": "",
+    "text": "矩阵乘以向量Ax=b\n这个3×3例子有一个很简短的Ax=b的类型：\n\\[\\begin{equation}\n\\begin{matrix}2x_1+4x_2-2x_3=2\\\\4x_1+9x_2-3x_3=8\\\\-2x_1-3x_2+7x_3=10\\end{matrix}\\qquad 同于 \\qquad \\begin{bmatrix}2&4&-2\\\\4&9&-3\\\\-2&-3&7\\end{bmatrix}\\begin{bmatrix}x_1\\\\x_2\\\\x_3\\end{bmatrix}=\\begin{bmatrix}2\\\\8\\\\10\\end{bmatrix}\n\\end{equation}\\]\n9个数字组成了矩阵A，A乘以x用于生成这三个方程。\n总结一下A乘以x。A矩阵乘以一个向量会给出一个向量。矩阵是一个方阵，方程数量等于未知数的数量，也等于向量x的维度。\nAx是一个A的列的组合。为了计算Ax的分量，我们使用行形式的矩阵乘法。Ax的分量是A的行的点乘生成的。Ax的第i个分量是\\((row\\ i) \\cdot\\boldsymbol{x}=a_{i1}x_1+a_{i2}x_2+\\cdots+a_{in}x_n\\)。\n也可以写为\\(\\sum_{j=1}^{n}a_{ij}x_j\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2.3 矩阵消元</span>"
+    ]
+  },
+  {
+    "objectID": "2_3_elimination_using_matrices.html#消元步骤的矩阵表示",
+    "href": "2_3_elimination_using_matrices.html#消元步骤的矩阵表示",
+    "title": "2.3 矩阵消元",
+    "section": "消元步骤的矩阵表示",
+    "text": "消元步骤的矩阵表示\nAx=b形式的时候，消元步骤是怎么样的呢？不光左侧需要进行消元变换，等式右侧也在随之变换着，它也会执行第二行减去第一行乘以2的操作。\n我们想要通过矩阵来实现这个操作。我们可以乘以一个矩阵E得到\\(\\boldsymbol{b_{new}}=E\\boldsymbol{b}\\)，其中矩阵E实现了消元：\n\\[消元矩阵\\qquad E=\\begin{bmatrix}1&0&0\\\\-2&1&0\\\\0&0&1\\end{bmatrix}\\]\n乘以矩阵E使得第二行减去了第一行乘2。1和3行保持不变：\n\\[\\begin{bmatrix}1&0&0\\\\-2&1&0\\\\0&0&1\\end{bmatrix}\\begin{bmatrix}2\\\\8\\\\10\\end{bmatrix}=\\begin{bmatrix}2\\\\4\\\\10\\end{bmatrix}\\qquad \\begin{bmatrix}1&0&0\\\\-2&1&0\\\\0&0&1\\end{bmatrix}\\begin{bmatrix}b_1\\\\b_2\\\\b_3\\end{bmatrix}=\\begin{bmatrix}b_1\\\\b_2-2b_1\\\\b_3\\end{bmatrix}\\]\n第1、3行是单位矩阵I。它们不改变第1、3个数字。\n这样描述消元矩阵是很简单的。只需要从一个单位矩阵I开始，改变其中的0到乘数-l。\n单位矩阵对角线是1其余的是0。然后Ib=b可以得到所有的b。初等矩阵或消元矩阵\\(E_{ij}\\)在i，j的位置有额外的非零项-l。\n等式左边的情况是如何呢？左右两侧都被\\(E_{31}\\)相乘。其目的是在矩阵(3,1)的位置上产生一个0。\n应用各种消去矩阵来使得主元产生一个一个的0。最终形成一个三角U。\n这个消去矩阵\\(E_{ij}\\)是一个很好的例子，但是后面可能不会再看到了。它展示了矩阵如何作用在行上的。通过几个消去步骤，我们将看到如何乘矩阵，顺序也很重要。乘积和逆对于这些矩阵尤为重要。后续的内容将持续解释。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2.3 矩阵消元</span>"
+    ]
+  },
+  {
+    "objectID": "2_3_elimination_using_matrices.html#矩阵乘法",
+    "href": "2_3_elimination_using_matrices.html#矩阵乘法",
+    "title": "2.3 矩阵消元",
+    "section": "矩阵乘法",
+    "text": "矩阵乘法\n两个矩阵如何相乘呢？让我们从矩阵E开始，我们知道EA是如何解释的，第二行减去了第一行的两倍，乘数就是l=2：\n\\[\\begin{equation}\nEA=\\begin{bmatrix}1&0&0\\\\-2&1&0\\\\0&0&1\\end{bmatrix}\\begin{bmatrix}2&4&-2\\\\4&9&-3\\\\-2&-3&7\\end{bmatrix}=\\begin{bmatrix}2&4&-2\\\\0&1&1\\\\-2&-3&7\\end{bmatrix}\n\\end{equation}\\]\n矩阵乘法要注意一些规则：\n结合律成立：A(BC)=(AB)C 交换律错误：通常AB≠BA\n矩阵乘法还有一个需求。假设B只有一列，那么矩阵乘矩阵就与矩阵乘向量一致了。重要的是，我们要能够一次将矩阵EB的一列相乘：\n如果矩阵B有一系列的列\\(b_1,b_2,b_3\\)，然后EB的列就是\\(Eb_1,Eb_2,Eb_3\\)。\n\\[\\begin{equation}\n矩阵乘法：AB=A[b_1\\ b_2\\ b_3]=[Ab_1\\ Ab_2\\ Ab_3]\n\\end{equation}\\]\n下一部分会描述矩阵乘积AB的每一项。矩阵乘法的美妙之处在于，无论是按行按列还是整个矩阵来看，所有的方法都是正确的。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2.3 矩阵消元</span>"
+    ]
+  },
+  {
+    "objectID": "2_3_elimination_using_matrices.html#矩阵p_ij来交换行",
+    "href": "2_3_elimination_using_matrices.html#矩阵p_ij来交换行",
+    "title": "2.3 矩阵消元",
+    "section": "矩阵\\(P_{ij}\\)来交换行",
+    "text": "矩阵\\(P_{ij}\\)来交换行\n交换矩阵的两行，我们使用的是\\(P_{ij}\\)。直接举例，为了交换2和3行，我们修改了一个单位矩阵：\n\\[置换矩阵\\qquad P_{23}=\\begin{bmatrix}1&0&0\\\\0&0&1\\\\0&1&0\\end{bmatrix}\\]\n行交换矩阵： \\(P_{ij}\\)是一个将单位矩阵中i和j行逆转的矩阵。当它乘以一个矩阵时，将会交换它们的ij行。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2.3 矩阵消元</span>"
+    ]
+  },
+  {
+    "objectID": "2_3_elimination_using_matrices.html#增广矩阵",
+    "href": "2_3_elimination_using_matrices.html#增广矩阵",
+    "title": "2.3 矩阵消元",
+    "section": "增广矩阵",
+    "text": "增广矩阵\n这本书的内容最终也不会被淘汰的。矩阵有各种各样的应用，在这些应用中，它们时相乘的。我们最好的起点就是一个方阵E乘以一个方阵A，我们已经学过了EA的结果，下一步就是矩形矩阵，它仍是我们原来的方程，但是包含了右边的b。\n关键思想：消元对于A到b的行做了同样的运算操作。我们可以将b作为一个额外的列接着进行消元。矩阵A通过b列进行了扩展或增广：\n\\[增广矩阵\\qquad [A\\quad \\boldsymbol{b}]=\\begin{bmatrix}2&4&-2&2\\\\4&9&-3&8\\\\-2&-3&7&10\\end{bmatrix}\\]\n消去是作用于矩阵的整个行。左侧和右侧都会乘以E，让方程2去减去方程1乘以2：\n\\[\\begin{bmatrix}1&0&0\\\\-2&1&0\\\\0&0&1\\end{bmatrix}\\begin{bmatrix}2&4&-2&2\\\\4&9&-3&8\\\\-2&-3&7&10\\end{bmatrix}=\\begin{bmatrix}2&4&-2&2\\\\0&1&1&4\\\\-2&-3&7&10\\end{bmatrix}\\]\n新的运算的第二行包含了0、1、1、4。新的第二个方程是\\(x_2+x_3=4\\)。矩阵乘法可以按行和按列作用：\n行：每行的E作用在[A b]上可以给出[EA Eb]的行。\n列：每列的E作用在[A b]上可以给出[EA Eb]的列。\n请注意作用在这个词，很重要。矩阵就是做了某些事情。矩阵A作用于x产生了b。矩阵E作用于A产生了EA。整个消去操作包含了一系列的行操作，也叫做矩阵乘法。\\(A\\)变成\\(E_{21}A\\)，然后变成\\(E_{31}E21A\\)，最后变成E32E31E21A，这是一个三角矩阵。\n右侧包含在增广矩阵中。最终的结果就是一个三角形方程组。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>2.3 矩阵消元</span>"
+    ]
+  },
+  {
+    "objectID": "2_4_rules_matrix_opera.html",
+    "href": "2_4_rules_matrix_opera.html",
+    "title": "2.4 矩阵运算规则",
+    "section": "",
+    "text": "第二种和第三章方法：行和列\nA乘以B的一列，其结果是AB的一列。这一列中，我们将A的每一列进行组合，这就是矩阵乘法的列算法：\n行算法刚好反过来，A的每行都乘以整个矩阵B。结果就是AB的每行：",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>2.4 矩阵运算规则</span>"
+    ]
+  },
+  {
+    "objectID": "2_4_rules_matrix_opera.html#第二种和第三章方法行和列",
+    "href": "2_4_rules_matrix_opera.html#第二种和第三章方法行和列",
+    "title": "2.4 矩阵运算规则",
+    "section": "",
+    "text": "矩阵A乘以矩阵B的每列：A[b1 … bp]=[Ab1 … Abp]\n\n\n\n\n\n\n\n矩阵A的每行乘以矩阵B：[A的i行]B=[AB的i行]",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>2.4 矩阵运算规则</span>"
+    ]
+  },
+  {
+    "objectID": "2_4_rules_matrix_opera.html#第四种方法列乘以行",
+    "href": "2_4_rules_matrix_opera.html#第四种方法列乘以行",
+    "title": "2.4 矩阵运算规则",
+    "section": "第四种方法：列乘以行",
+    "text": "第四种方法：列乘以行\n\n将A的第1到n列乘以B的第1到n行。然后将这些矩阵相加：\n\n\\[\\begin{bmatrix}col1&col2&col3\\\\.&.&.\\\\.&.&.\\end{bmatrix}\\begin{bmatrix}row1&.&.&.\\\\row2&.&.&.\\\\row3&.&.&.\\end{bmatrix}=(col1)(row1)+(col2)(row2)+(col3)(row3)\\]\n比如2×2的矩阵，注意看：\n\\[AB=\\begin{bmatrix}\\boldsymbol{a}&b\\\\ \\boldsymbol{c}&d\\end{bmatrix}\\begin{bmatrix}\\boldsymbol{E}&\\boldsymbol{F}\\\\G&H\\end{bmatrix}=\\begin{bmatrix}\\boldsymbol{aE}+bG&\\boldsymbol{aF}+bH\\\\\\boldsymbol{cE}+dG&\\boldsymbol{cF}+dH\\end{bmatrix}\\]\n\\[\\begin{equation}\n行列相乘再相加：\\boldsymbol{AB}=\\begin{bmatrix}\\boldsymbol{a}\\\\\\boldsymbol{c}\\end{bmatrix}\\begin{bmatrix}\\boldsymbol{E}&\\boldsymbol{F}\\end{bmatrix}+\\begin{bmatrix}b\\\\d\\end{bmatrix}\\begin{bmatrix}G&H\\end{bmatrix}\n\\end{equation}\\]",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>2.4 矩阵运算规则</span>"
+    ]
+  },
+  {
+    "objectID": "2_4_rules_matrix_opera.html#矩阵运算定律",
+    "href": "2_4_rules_matrix_opera.html#矩阵运算定律",
+    "title": "2.4 矩阵运算规则",
+    "section": "矩阵运算定律",
+    "text": "矩阵运算定律\n矩阵满足的六条定律，其中涉及加法的定律都很简单，下面是三条：\n\\(A+B=B+A（交换律）\\) \\(c(A+B)=cA+cB（分配律）\\) \\(A+(B+C)=(A+B)+C（结合律）\\)\n三条乘法定律：\n\\(AB=BA（交换律通常不存在）\\) \\(A(B+C)=AB+AC（左侧分配律）\\) \\((A+B)C=AC+BC（右侧分配律）\\) \\(A(BC)=(AB)C（ABC结合律）\\)\n但是，AI=IA是存在的。所有的方阵都可以与I或者cI交换。\n还有以下定律也是存在的：\n\\(A^p=AAA\\cdots A(p个)\\qquad(A^p)(A^q)=A^{p+q}\\qquad (A^p)^q=A^{pq}\\)\n当pq是0或负值的时候，该公式依然存在。前提是A的逆矩阵\\(A^{-1}\\)存在，然后\\(A^0=I\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>2.4 矩阵运算规则</span>"
+    ]
+  },
+  {
+    "objectID": "2_4_rules_matrix_opera.html#块矩阵和块乘法",
+    "href": "2_4_rules_matrix_opera.html#块矩阵和块乘法",
+    "title": "2.4 矩阵运算规则",
+    "section": "块矩阵和块乘法",
+    "text": "块矩阵和块乘法\n矩阵可以被分割成块。下面是一个4×6的矩阵被分割成2×2的块的例子，这里每块都是一个单位矩阵I：\n\\[A=\\left[\\begin{array}{cc|cc|cc}\n1 & 0 & 1 & 0 & 1 & 0\\\\\n0 & 1 & 0 & 1 & 0 & 1\\\\\n\\hline\n1 & 0 & 1 & 0 & 1 & 0\\\\\n0 & 1 & 0 & 1 & 0 & 1\\\\\n\\end{array}\\right]=\\begin{bmatrix}I&I&I\\\\I&I&I \\end{bmatrix}\\]\n如果B也是4×6矩阵也可以如此分块，就可以执行A+B的块相加。\n之前其实已经使用过块矩阵的概念了。当时的增广矩阵就是将向量b加到矩阵A的右侧。然后[A b]可以被消除矩阵相乘得到[EA Eb]。\n块乘法：如果A的块可以乘以B的块，那么AB的块乘法就是允许的。切块后A的列必须要匹配B的行。\n\\[\\begin{equation}\n\\begin{bmatrix}A_{11}&A_{12}\\\\A_{21}&A_{22}\\end{bmatrix}\\begin{bmatrix}B_{11}\\\\B_{21}\\end{bmatrix}=\\begin{bmatrix}A_{11}B_{11}+A_{12}B_{21}\\\\A_{21}B_{11}+A_{22}B_{21}\\end{bmatrix}\n\\end{equation}\\]\n有一个特殊的块乘法的例子，可以用于推导出矩阵运算的方法四，列乘行：\n矩阵AB被分为n列和n行：\n\\[\\begin{equation}[a_1\\cdots a_n]\\begin{bmatrix}b_1\\\\.\\\\.\\\\.\\\\b_n\\end{bmatrix}=[a_1b_1+\\cdots +a_nb_n]\\end{equation}\\]\n下面我们来看如何对块执行消去呢？假设我们有一个四个块组成的矩阵，来看看E如何消去C块的：\n\\[\\left[ \\begin{array}{c|c}\nI&0\\\\\n\\hline\n-CA^{-1}&I\n\\end{array}\\right]\n\\left[ \\begin{array}{c|c}\nA&B\\\\\n\\hline\nC&D\n\\end{array}\\right]\n\\left[\\begin{array}{c|c}\nA&B\\\\\n\\hline\n0&D-CA^{-1}B\n\\end{array}\\right]\n\\]\n这是普通的消去，一次一列。主元是A，最后的一个块是\\(D-CA^{-1}B\\)，他就像d-cb/a一样。这被称作是舒尔体（Schur complement）。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>2.4 矩阵运算规则</span>"
+    ]
+  },
+  {
+    "objectID": "2_5_inverse_matrices.html",
+    "href": "2_5_inverse_matrices.html",
+    "title": "2.5 逆矩阵",
+    "section": "",
+    "text": "AB的逆\n对于两个数来说，a=3，b=-3。两者都有逆1/3和-1/3。但两者的和为0，没有逆。二者的积为-9，就有了逆。矩阵与这类似，A+B很难有一个固定的结论。当且仅当AB都分别有逆的时候，AB有逆：\n\\[\\begin{equation}\n(AB)^{-1}=B^{-1}A^{-1}\n\\end{equation}\\]\n这说明了一个基本的数学规则：逆的顺序是相反的。三者的时候也是这样的：\n\\[\\begin{equation}\n(ABC)^{-1}=C^{-1}B^{-1}A^{-1}\n\\end{equation}\\]\n逆矩阵与原矩阵的乘积由于顺序相反会出现一些现象，比如，我们有矩阵EF，二者都可逆。E的作用是将第二行减去5乘第一行，F作用是将第三行减去4乘第二行。那么我们来看FE的乘积与其逆有何不同，FE的第三行第一列会有一个新的数值20出现，而其逆则是0。这就是因为FE在先进行F变换的时候，第三行发生过一次变化，而其逆顺序调换先进行的是E的逆变换，没影响第三行的情况。注意：这就是下一节，我们选择A=LU的时候，从U到A乘数刚好落在下三角L上。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>2.5 逆矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "2_5_inverse_matrices.html#通过高斯消元计算a-1",
+    "href": "2_5_inverse_matrices.html#通过高斯消元计算a-1",
+    "title": "2.5 逆矩阵",
+    "section": "通过高斯消元计算\\(A^{-1}\\)",
+    "text": "通过高斯消元计算\\(A^{-1}\\)\n下面我们使用高斯消元法来求\\(A^{-1}\\)，也就是求解\\(AA^{-1}=1\\)。A乘以\\(A^{-1}\\)的第一列（x1）可以得到I的第一列（e1）。也就得到了\\(Ax_1=e_1=(1,0,0)\\)。同样还有另外两列的方程：\n\\[\\begin{equation}\nAA^{-1}=A[x_1\\ \\ x_2\\ \\ x_3]=[e_1\\ \\ e_2\\ \\ e_3]=I\n\\end{equation}\\]\n高斯消元法得到\\(A^{-1}\\)需要解n个方程。我们会构造一个\\([A\\ \\ I]\\)，我们实际操作一下：\n\\[\\begin{align}\n\\begin{bmatrix}K&e_1&e_2&e_3\\end{bmatrix}&=\\begin{bmatrix}2&-1&0&1&0&0\\\\-1&2&-1&0&1&0\\\\0&-1&2&0&0&1\\end{bmatrix}\\notag\\\\\n&\\to \\begin{bmatrix}2&-1&0&1&0&0\\\\0&\\frac{3}{2}&-1&\\frac{1}{2}&1&0\\\\0&-1&2&0&0&1\\end{bmatrix}\\qquad(\\frac{1}{2}\\ row1+row2)\\notag\\\\\n&\\to \\begin{bmatrix}2&-1&0&1&0&0\\\\0&\\frac{3}{2}&-1&\\frac{1}{2}&1&0\\\\0&0&\\frac{4}{3}&\\frac{1}{3}&\\frac{2}{3}&1\\end{bmatrix}\\qquad(\\frac{2}{3}\\ row2+row3) \\notag\n\\end{align}\\]\n现在针对\\(K\\)矩阵我们有了\\(K^{-1}\\)，它的前三列是一个上三角矩阵U，主元2，\\(\\frac{3}{2}\\)，\\(\\frac{4}{3}\\)在对角线上。接下来是进行回代：\n\\[\\begin{align}\n&\\to \\begin{bmatrix}2&-1&0&1&0&0\\\\0&\\frac{3}{2}&0&\\frac{3}{4}&\\frac{3}{2}&\\frac{3}{4}\\\\0&0&\\frac{4}{3}&\\frac{1}{3}&\\frac{2}{3}&1\\end{bmatrix}\\qquad(\\frac{4}{3}\\ row3+row2) \\notag\\\\\n&\\to \\begin{bmatrix}2&0&0&\\frac{3}{2}&1&\\frac{1}{2}\\\\0&\\frac{3}{2}&0&\\frac{3}{4}&\\frac{3}{2}&\\frac{3}{4}\\\\0&0&\\frac{4}{3}&\\frac{1}{3}&\\frac{2}{3}&1\\end{bmatrix}\\qquad(\\frac{2}{3}\\ row2+row1) \\notag\n\\end{align}\\]\n最后一步是单位化：\n\\[\\begin{bmatrix}1&0&0&\\frac{3}{4}&\\frac{1}{2}&\\frac{1}{4}\\\\0&1&0&\\frac{1}{2}&1&\\frac{1}{2}\\\\0&0&1&\\frac{1}{4}&\\frac{1}{2}&\\frac{3}{4}\\end{bmatrix}=\\begin{bmatrix}I&x_1&x_2&x_3\\end{bmatrix}=\\begin{bmatrix}I&K^{-1}\\end{bmatrix}\\]\n消去时将A变为I的同时创建了逆矩阵。对于大矩阵，可能不想要得到其逆矩阵，但对于小矩阵来说，得到逆矩阵是值得的。我们有以下规律：\n\n\\(K\\)在对角线上对称，那么\\(K^{-1}\\)也是如此。\n当\\(K\\)是三角矩阵（只有三个非零对角）的时候。\\(K^{-1}\\)是一个非零的密集矩阵。这也是我们不常计算逆矩阵的原因。\n主元的乘积是4，这也是矩阵\\(K\\)的行列式。\n\n这就是为什么逆矩阵需要行列式不为0，因为我们要进行除法。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>2.5 逆矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "2_5_inverse_matrices.html#奇异与可逆",
+    "href": "2_5_inverse_matrices.html#奇异与可逆",
+    "title": "2.5 逆矩阵",
+    "section": "奇异与可逆",
+    "text": "奇异与可逆\n我们回到中心问题。哪些矩阵有逆矩阵？本节的开头提出了主元检验：当\\(A\\)有完整的n个主元时，\\(A^{-1}\\)存在。可以使用高斯消元来证明：\n\n有n个主元，消元需要解的方程是\\(Ax_i=e_i\\)。\\(x_i\\)的诸多列组成了\\(A^{-1}\\)。然后\\(AA^{-1}=I\\)，\\(A^{-1}\\)是右侧逆矩阵。\n消元实际上是一系列E，P，D的矩阵乘法。\n\n证明略。\n当且仅当三角矩阵对角线没有元素为0时，该三角矩阵可逆。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>2.5 逆矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "2_5_inverse_matrices.html#认识可逆矩阵",
+    "href": "2_5_inverse_matrices.html#认识可逆矩阵",
+    "title": "2.5 逆矩阵",
+    "section": "认识可逆矩阵",
+    "text": "认识可逆矩阵\n有些矩阵可以很快的分辨出是可逆矩阵。\n对角占优矩阵是可逆的。（当矩阵的对角线元素都大于该行其余部分的总和时）",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>2.5 逆矩阵</span>"
+    ]
+  },
+  {
+    "objectID": "2_6_elimination_factorization.html",
+    "href": "2_6_elimination_factorization.html",
+    "title": "2.6 消元法=分解法：A=LU",
+    "section": "",
+    "text": "说明和示例\n第一点：每个逆矩阵\\(E^{-1}\\)是一个下三角。其中非对角线项是\\(l_{ij}\\)，撤销是使用\\(-l_{ij}\\)。\\(E\\)和\\(E^{-1}\\)主对角线是1。\n第二点：所有的\\(E^{-1}_{ij}\\)乘以U后得到了A。下三角矩阵乘积的逆矩阵是L。\n第三点：每个乘数\\(l_{ij}\\)直接放在L的ij位置上。\n再来看A=LU：这个消去不包含行交换。上三角U包含了对角线上的主元。下三角L对角线上是1，乘数\\(l_{ij}\\)在L的对角线下。所以说这个L就是乘数矩阵，U就是一个消去后的矩阵。\n就像：\n\\[A=\\begin{bmatrix}2&1&0\\\\1&2&1\\\\0&1&2\\end{bmatrix}=\\begin{bmatrix}1&0&0\\\\ \\frac{1}{2}&1&0\\\\0&\\frac{2}{3}&1\\end{bmatrix}\\begin{bmatrix}2&1&0\\\\0&\\frac{3}{2}&1\\\\0&0&\\frac{4}{3}\\end{bmatrix}=LU\\]\n如何确认LU中的0呢？\nA中的行开头为0的，L也如此。\nA中的列开头为0的，U也如此。\n为了研究A等于LU：我们知道主元行是减去了某些行得到的。他们不是原始的A了。他们是U中的行，我们可以这么计算U的第三行：\n\\[\\begin{equation}\nRow\\ 3\\ of\\ U=(Row\\ 3\\ of\\ A)-l_{31}(Row\\ 1\\ of\\ U)-l_{32}(Row\\ 2\\ of\\ U)\n\\end{equation}\\]\n因此可以改写：\n\\[\\begin{equation}\nRow\\ 3\\ of\\ A=l_{31}(Row\\ 1\\ of\\ U)+l_{32}(Row\\ 2\\ of\\ U)+(Row\\ 3\\ of\\ U)\n\\end{equation}\\]\n可以看到这正是A=LU的第三行。无论A大小都如此。\n为了将A=LU进行对称化处理，可以将U除以主元的值（单位化过程），这样U的对角线上就是1了。U可以表示为：\n\\[U被分为\\left[ \\begin{array}{cccc}\nd_1& & & \\\\\n&d_2& & \\\\\n& & \\ddots& \\\\\n& & & d_n \\end{array} \\right]\n\\left[ \\begin{array}{cccc}\n1&u_{12}/d_1&u_{13}/d_1&\\cdot\\\\\n&1&u_{23}/d_2&\\cdot\\\\\n  & &\\ddots&\\vdots\\\\\n  &&&1\n\\end{array}\\right]\n\\]\n中间这个矩阵被称作D矩阵，所以\n三角因式分解可以写成：\\(\\boldsymbol{A=LU}\\)或\\(\\boldsymbol{A=LDU}\\)。\n\\[\\begin{equation}\n\\begin{bmatrix}1&0\\\\3&1\\end{bmatrix}\\begin{bmatrix}2&8\\\\0&5\\end{bmatrix}分解为\\begin{bmatrix}1&0\\\\3&1\\end{bmatrix}\\begin{bmatrix}2&\\\\&5\\end{bmatrix}\\begin{bmatrix}1&4\\\\0&1\\end{bmatrix}\n\\end{equation}\\]",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>2.6 消元法=分解法：*A=LU*</span>"
+    ]
+  },
+  {
+    "objectID": "2_6_elimination_factorization.html#一个方阵两个三角矩阵",
+    "href": "2_6_elimination_factorization.html#一个方阵两个三角矩阵",
+    "title": "2.6 消元法=分解法：A=LU",
+    "section": "一个方阵=两个三角矩阵",
+    "text": "一个方阵=两个三角矩阵\n矩阵L包含着高斯消元的步骤。我们在求解Ax=b的时候怎么用呢？在他的右边我们先用\\(L^{-1}\\)再用\\(U^{-1}\\)。\n\n因子（通过消去矩阵A得到L和U）\n解（使用L消去b然后使用U进行反向代回）\n\n如何解方程呢？首先在右侧应用消去的方法，此时b就会变为c，然后回代后解开方程即可：\n\\[\\begin{equation}\n消元及回代：解\\quad Lc=b\\quad然后解\\quad Ux=c\n\\end{equation}\\]\n应用一下：\n\\[\nAx=b \\quad \\begin{matrix}u+2v=5\\\\4u+9v=21\\end{matrix}\\qquad变为\\qquad \\begin{matrix}u+2v=5\\\\v=1\\end{matrix}\\quad Ux=c\n\\]\nLc=b下三角系统：\\(\\begin{bmatrix}1&0\\\\4&1\\end{bmatrix}\\begin{bmatrix}c\\end{bmatrix}=\\begin{bmatrix}5\\\\21\\end{bmatrix}\\)求解出\\(c=\\begin{bmatrix}5\\\\1\\end{bmatrix}\\)。\nUx=c上三角系统：\\(\\begin{bmatrix}1&2\\\\0&1\\end{bmatrix}\\begin{bmatrix}x\\end{bmatrix}=\\begin{bmatrix}5\\\\1\\end{bmatrix}\\)求解出\\(x=\\begin{bmatrix}3\\\\1\\end{bmatrix}\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>2.6 消元法=分解法：*A=LU*</span>"
+    ]
+  },
+  {
+    "objectID": "2_7_transposes_and_permutations.html",
+    "href": "2_7_transposes_and_permutations.html",
+    "title": "2.7 转置和排列",
+    "section": "",
+    "text": "内积的意义\n内积是x和y向量各项的乘积之和。让我们用矩阵来表示吧。\nT在内：点积或内积是\\(x^Ty\\qquad (1\\times n)(n\\times 1)\\)\nT在外：第一级积或外积是\\(xy^T\\qquad (n\\times 1)(1\\times n)\\)\n\\(x^Ty\\)是一个数字，而\\(xy^T\\)是一个矩阵。量子力学中会将其写成&lt; x|y &gt;（内积）和|x &gt;&lt; y|（外积）。\n还有三个内积有意义的例子：\n力学：做功=(力)(距离)=\\(x^Tf\\)\n电学：热损失=(电压降)(电流)=\\(e^Ty\\)\n经济学：收入=(数量)(价格)=\\(q^Tp\\)\n另外有\\((Ax)^{T}y=x^{T}A^{T}y=x^{T}(A^{T}y)\\)",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>2.7 转置和排列</span>"
+    ]
+  },
+  {
+    "objectID": "2_7_transposes_and_permutations.html#对称矩阵",
+    "href": "2_7_transposes_and_permutations.html#对称矩阵",
+    "title": "2.7 转置和排列",
+    "section": "对称矩阵",
+    "text": "对称矩阵\n对于一个对称矩阵来说，A和A的转置是没有区别的。我们将对称矩阵用字母S表示：\n对称矩阵有：\\(S^T=S\\)，这意味着\\(s_{ji}=s_{ij}\\)。\n对称矩阵的逆矩阵也是对称的，有：\\((S^{-1})^T=(S^T)^{-1}=S^{-1}\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>2.7 转置和排列</span>"
+    ]
+  },
+  {
+    "objectID": "2_7_transposes_and_permutations.html#构造对称矩阵ataaatldlt",
+    "href": "2_7_transposes_and_permutations.html#构造对称矩阵ataaatldlt",
+    "title": "2.7 转置和排列",
+    "section": "构造对称矩阵：\\(A^TA\\)、\\(AA^T\\)、\\(LDL^T\\)",
+    "text": "构造对称矩阵：\\(A^TA\\)、\\(AA^T\\)、\\(LDL^T\\)\n一个矩阵A（矩形矩阵也可），\\(A^TA\\)会自动生成一个对称矩阵。\n\\[\\begin{equation}\nA^TA的转置是A^T(A^T)^T\n\\end{equation}\\]\n矩阵\\(AA^T\\)也是对称矩阵，但是它是和\\(A^TA\\)不同的。根据经验大多数以矩形矩阵开始的都是以\\(A^TA\\)或\\(AA^T\\)结束的。\n当对称矩阵消去时，因式分解为LDU时，\\(U=L^T\\)，也就是\\(S=LDL^T\\)。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>2.7 转置和排列</span>"
+    ]
+  },
+  {
+    "objectID": "2_7_transposes_and_permutations.html#排列矩阵",
+    "href": "2_7_transposes_and_permutations.html#排列矩阵",
+    "title": "2.7 转置和排列",
+    "section": "排列矩阵",
+    "text": "排列矩阵\n排列矩阵每一列都只有一个单独的1。\\(P^T\\)也是排列矩阵，两个排列矩阵的积也是排列矩阵。排列矩阵的逆矩阵也是排列矩阵。\n最简单的排列矩阵P=I没有交换。然后就是行交换Pij。将I的所有可能的行交换列出来，就得到了所有可能的排列矩阵：\n一个排列矩阵P有着单位矩阵I的所有行排序\n重点：\\(P^{-1}\\)总是和\\(P^T\\)相等。\\(PP^T=I\\)",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>2.7 转置和排列</span>"
+    ]
+  },
+  {
+    "objectID": "2_7_transposes_and_permutations.html#包括行交换的palu因式分解",
+    "href": "2_7_transposes_and_permutations.html#包括行交换的palu因式分解",
+    "title": "2.7 转置和排列",
+    "section": "包括行交换的PA=LU因式分解",
+    "text": "包括行交换的PA=LU因式分解\n我们希望你能记住A=LU。它开始于\\(A=(E^{-1}_{21}\\cdots E^{-1}_{ij}\\cdots)U\\)。每个消去步骤都是由一个\\(E_{ij}\\)，并且由\\(E^{-1}_{ij}\\)逆转。这些逆被压缩为L。其对角线是1，结果是A=LU。\n但是不是每个矩阵都可以这样的因式分解，有时需要进行行交换来产生主元。这些行交换被组合成了一个排列矩阵P。我们可以在消去前就进行行交换，也可以在消去后：（1）\\(PA=LU\\)（2）\\(A=L_1P_1U_1\\)。\n\\(PA=LU\\)是常用的，可能不如\\(A=L_1P_1U_1\\)显得优雅。不必要在另一种形式上花费太多功夫，最重要的情况是P=I的情况，也就是没有行交换。",
+    "crumbs": [
+      "二、解线性方程",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>2.7 转置和排列</span>"
     ]
   }
 ]

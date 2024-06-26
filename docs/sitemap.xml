@@ -2,14 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bluetea577.github.io/Translate_linear_algebra/index.html</loc>
-    <lastmod>2024-05-31T04:03:00.273Z</lastmod>
+    <lastmod>2024-06-26T07:37:38.435Z</lastmod>
   </url>
   <url>
     <loc>https://bluetea577.github.io/Translate_linear_algebra/1_1_linear_combinations.html</loc>
-    <lastmod>2024-05-24T10:58:06.098Z</lastmod>
+    <lastmod>2024-06-03T02:37:23.000Z</lastmod>
   </url>
   <url>
     <loc>https://bluetea577.github.io/Translate_linear_algebra/1_2_lengths_and_dotproducts.html</loc>
-    <lastmod>2024-05-26T04:20:30.547Z</lastmod>
+    <lastmod>2024-05-26T04:20:30.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_solve_linear_equation.html</loc>
+    <lastmod>2024-06-26T07:36:15.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_1_vector_and_linearequ.html</loc>
+    <lastmod>2024-06-03T02:37:26.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_2_idea_of_elimination.html</loc>
+    <lastmod>2024-06-03T08:22:42.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_3_elimination_using_matrices.html</loc>
+    <lastmod>2024-06-07T02:59:09.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_4_rules_matrix_opera.html</loc>
+    <lastmod>2024-06-07T02:59:05.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_5_inverse_matrices.html</loc>
+    <lastmod>2024-06-25T02:49:50.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_6_elimination_factorization.html</loc>
+    <lastmod>2024-06-25T11:30:16.631Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetea577.github.io/Translate_linear_algebra/2_7_transposes_and_permutations.html</loc>
+    <lastmod>2024-06-26T07:34:10.843Z</lastmod>
   </url>
 </urlset>

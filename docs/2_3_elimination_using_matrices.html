@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./2_4_rules_matrix_opera.html" rel="next">
 <link href="./2_2_idea_of_elimination.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,6 +127,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +234,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#矩阵乘以向量axb" id="toc-矩阵乘以向量axb" class="nav-link active" data-scroll-target="#矩阵乘以向量axb">矩阵乘以向量Ax=b</a></li>
+  <li><a href="#消元步骤的矩阵表示" id="toc-消元步骤的矩阵表示" class="nav-link" data-scroll-target="#消元步骤的矩阵表示">消元步骤的矩阵表示</a></li>
+  <li><a href="#矩阵乘法" id="toc-矩阵乘法" class="nav-link" data-scroll-target="#矩阵乘法">矩阵乘法</a></li>
+  <li><a href="#矩阵p_ij来交换行" id="toc-矩阵p_ij来交换行" class="nav-link" data-scroll-target="#矩阵p_ij来交换行">矩阵<span class="math inline">\(P_{ij}\)</span>来交换行</a></li>
+  <li><a href="#增广矩阵" id="toc-增广矩阵" class="nav-link" data-scroll-target="#增广矩阵">增广矩阵</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_3_elimination_using_matrices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,8 +268,88 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<ol type="1">
+<li>第一步通过矩阵<span class="math inline">\(E_{21}\)</span>乘以方程<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>得到<span class="math inline">\(E_{21}A\boldsymbol{x}=E_{21}\boldsymbol{b}\)</span>。</li>
+<li>矩阵<span class="math inline">\(E_{21}A\)</span>在第2行第1列有一个0，因为消元。</li>
+<li><span class="math inline">\(E_{21}\)</span>是单位矩阵减去第二行第一列的乘数<span class="math inline">\(a_{21}/a_{11}\)</span>。</li>
+<li>矩阵矩阵乘法是n个矩阵向量乘法：<span class="math inline">\(\boldsymbol{E}\boldsymbol{A}=[\boldsymbol{E}a_1\dots\boldsymbol{E}a_n]\)</span>。</li>
+<li>在对等式左边进行乘法的时候，我们肯定会需要等式右边的<span class="math inline">\(E\boldsymbol{b}\)</span>。所以可以认为是E在乘以一个增广矩阵<span class="math inline">\([A\boldsymbol{b}]=[a_1\dots a_n\ \boldsymbol{b}]\)</span>。</li>
+<li>消元就是将<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>乘以<span class="math inline">\(E_{21},E_{31},\dots,E_{n1}\)</span>，然后一列一列进行下去。</li>
+<li>行交换我们写作<span class="math inline">\(P_{ij}\)</span>，表示ij行交换，我们用单位矩阵I的ij行交换来表示<span class="math inline">\(P_{ij}\)</span>。</li>
+</ol>
+<hr>
+<p>自此，我们将开始我们学习矩阵乘法的第一个例子。自然，我们开始的矩阵是一个包含了很多零的矩阵。我们目标是看看矩阵在做什么。E作用于一个向量b或者矩阵A从而产生了一个新的向量Eb或者一个新的矩阵EA。</p>
+<p>我们第一个例子是“矩阵消元”。它们执行消元步骤。比如将第<span class="math inline">\(j^{th}\)</span>个方程减去乘以<span class="math inline">\(l_{th}\)</span>后的第<span class="math inline">\(i^{th}\)</span>个方程。我们需要大量这样的的简单矩阵<span class="math inline">\(E_{ij}\)</span>，在主对角线下消去每个非零值。</p>
+<p>后面的章节，我们不会看到这些矩阵。它们是可以组合成一个矩阵E的。最简洁的方法是将它们的逆矩阵<span class="math inline">\((E_{ij})^{-1}\)</span>结合成为一个矩阵<span class="math inline">\(L=E^{-1}\)</span>。这里是接下来内容的目的</p>
+<ol type="1">
+<li>了解矩阵乘法每一步是怎么样的。</li>
+<li>组合所有的<span class="math inline">\(E_{ij}\)</span>步骤到一个E矩阵。</li>
+<li>了解<span class="math inline">\(E_{ij}\)</span>是怎么被它的逆矩阵<span class="math inline">\(E_{ij}^{-1}\)</span>反转的。</li>
+<li>组合所有的逆矩阵<span class="math inline">\(E_{ij}^{-1}\)</span>至L。</li>
+</ol>
+<p>本节找到所有的矩阵<span class="math inline">\(E_{ij}\)</span>。2.4节介绍四种矩阵相乘的方法。2.5节反转了这些步骤。</p>
+<section id="矩阵乘以向量axb" class="level2">
+<h2 class="anchored" data-anchor-id="矩阵乘以向量axb">矩阵乘以向量Ax=b</h2>
+<p>这个3×3例子有一个很简短的Ax=b的类型：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{matrix}2x_1+4x_2-2x_3=2\\4x_1+9x_2-3x_3=8\\-2x_1-3x_2+7x_3=10\end{matrix}\qquad 同于 \qquad \begin{bmatrix}2&amp;4&amp;-2\\4&amp;9&amp;-3\\-2&amp;-3&amp;7\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=\begin{bmatrix}2\\8\\10\end{bmatrix}
+\end{equation}\]</span></p>
+<p>9个数字组成了矩阵A，A乘以x用于生成这三个方程。</p>
+<p>总结一下A乘以x。A矩阵乘以一个向量会给出一个向量。矩阵是一个方阵，方程数量等于未知数的数量，也等于向量x的维度。</p>
+<p>Ax是一个A的列的组合。为了计算Ax的分量，我们使用行形式的矩阵乘法。Ax的分量是A的行的点乘生成的。Ax的第i个分量是<span class="math inline">\((row\ i) \cdot\boldsymbol{x}=a_{i1}x_1+a_{i2}x_2+\cdots+a_{in}x_n\)</span>。</p>
+<p>也可以写为<span class="math inline">\(\sum_{j=1}^{n}a_{ij}x_j\)</span>。</p>
+</section>
+<section id="消元步骤的矩阵表示" class="level2">
+<h2 class="anchored" data-anchor-id="消元步骤的矩阵表示">消元步骤的矩阵表示</h2>
+<p>Ax=b形式的时候，消元步骤是怎么样的呢？不光左侧需要进行消元变换，等式右侧也在随之变换着，它也会执行第二行减去第一行乘以2的操作。</p>
+<p>我们想要通过矩阵来实现这个操作。我们可以乘以一个矩阵E得到<span class="math inline">\(\boldsymbol{b_{new}}=E\boldsymbol{b}\)</span>，其中矩阵E实现了消元：</p>
+<p><span class="math display">\[消元矩阵\qquad E=\begin{bmatrix}1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\]</span></p>
+<p>乘以矩阵E使得第二行减去了第一行乘2。1和3行保持不变：</p>
+<p><span class="math display">\[\begin{bmatrix}1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\begin{bmatrix}2\\8\\10\end{bmatrix}=\begin{bmatrix}2\\4\\10\end{bmatrix}\qquad \begin{bmatrix}1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\begin{bmatrix}b_1\\b_2\\b_3\end{bmatrix}=\begin{bmatrix}b_1\\b_2-2b_1\\b_3\end{bmatrix}\]</span></p>
+<p>第1、3行是单位矩阵I。它们不改变第1、3个数字。</p>
+<p>这样描述消元矩阵是很简单的。只需要从一个单位矩阵I开始，改变其中的0到乘数-l。</p>
+<p>单位矩阵对角线是1其余的是0。然后Ib=b可以得到所有的b。初等矩阵或消元矩阵<span class="math inline">\(E_{ij}\)</span>在i，j的位置有额外的非零项-l。</p>
+<p>等式左边的情况是如何呢？左右两侧都被<span class="math inline">\(E_{31}\)</span>相乘。其目的是在矩阵(3,1)的位置上产生一个0。</p>
+<p>应用各种消去矩阵来使得主元产生一个一个的0。最终形成一个三角U。</p>
+<p>这个消去矩阵<span class="math inline">\(E_{ij}\)</span>是一个很好的例子，但是后面可能不会再看到了。它展示了矩阵如何作用在行上的。通过几个消去步骤，我们将看到如何乘矩阵，顺序也很重要。乘积和逆对于这些矩阵尤为重要。后续的内容将持续解释。</p>
+</section>
+<section id="矩阵乘法" class="level2">
+<h2 class="anchored" data-anchor-id="矩阵乘法">矩阵乘法</h2>
+<p>两个矩阵如何相乘呢？让我们从矩阵E开始，我们知道EA是如何解释的，第二行减去了第一行的两倍，乘数就是l=2：</p>
+<p><span class="math display">\[\begin{equation}
+EA=\begin{bmatrix}1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\begin{bmatrix}2&amp;4&amp;-2\\4&amp;9&amp;-3\\-2&amp;-3&amp;7\end{bmatrix}=\begin{bmatrix}2&amp;4&amp;-2\\0&amp;1&amp;1\\-2&amp;-3&amp;7\end{bmatrix}
+\end{equation}\]</span></p>
+<p>矩阵乘法要注意一些规则：</p>
+<p>结合律成立：A(BC)=(AB)C 交换律错误：通常AB≠BA</p>
+<p>矩阵乘法还有一个需求。假设B只有一列，那么矩阵乘矩阵就与矩阵乘向量一致了。重要的是，我们要能够一次将矩阵EB的一列相乘：</p>
+<p>如果矩阵B有一系列的列<span class="math inline">\(b_1,b_2,b_3\)</span>，然后EB的列就是<span class="math inline">\(Eb_1,Eb_2,Eb_3\)</span>。</p>
+<p><span class="math display">\[\begin{equation}
+矩阵乘法：AB=A[b_1\ b_2\ b_3]=[Ab_1\ Ab_2\ Ab_3]
+\end{equation}\]</span></p>
+<p>下一部分会描述矩阵乘积AB的每一项。矩阵乘法的美妙之处在于，无论是按行按列还是整个矩阵来看，所有的方法都是正确的。</p>
+</section>
+<section id="矩阵p_ij来交换行" class="level2">
+<h2 class="anchored" data-anchor-id="矩阵p_ij来交换行">矩阵<span class="math inline">\(P_{ij}\)</span>来交换行</h2>
+<p>交换矩阵的两行，我们使用的是<span class="math inline">\(P_{ij}\)</span>。直接举例，为了交换2和3行，我们修改了一个单位矩阵：</p>
+<p><span class="math display">\[置换矩阵\qquad P_{23}=\begin{bmatrix}1&amp;0&amp;0\\0&amp;0&amp;1\\0&amp;1&amp;0\end{bmatrix}\]</span></p>
+<p>行交换矩阵： <span class="math inline">\(P_{ij}\)</span>是一个将单位矩阵中i和j行逆转的矩阵。当它乘以一个矩阵时，将会交换它们的ij行。</p>
+</section>
+<section id="增广矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="增广矩阵">增广矩阵</h2>
+<p>这本书的内容最终也不会被淘汰的。矩阵有各种各样的应用，在这些应用中，它们时相乘的。我们最好的起点就是一个方阵E乘以一个方阵A，我们已经学过了EA的结果，下一步就是矩形矩阵，它仍是我们原来的方程，但是包含了右边的b。</p>
+<p>关键思想：消元对于A到b的行做了同样的运算操作。我们可以将b作为一个额外的列接着进行消元。矩阵A通过b列进行了扩展或增广：</p>
+<p><span class="math display">\[增广矩阵\qquad [A\quad \boldsymbol{b}]=\begin{bmatrix}2&amp;4&amp;-2&amp;2\\4&amp;9&amp;-3&amp;8\\-2&amp;-3&amp;7&amp;10\end{bmatrix}\]</span></p>
+<p>消去是作用于矩阵的整个行。左侧和右侧都会乘以E，让方程2去减去方程1乘以2：</p>
+<p><span class="math display">\[\begin{bmatrix}1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\begin{bmatrix}2&amp;4&amp;-2&amp;2\\4&amp;9&amp;-3&amp;8\\-2&amp;-3&amp;7&amp;10\end{bmatrix}=\begin{bmatrix}2&amp;4&amp;-2&amp;2\\0&amp;1&amp;1&amp;4\\-2&amp;-3&amp;7&amp;10\end{bmatrix}\]</span></p>
+<p>新的运算的第二行包含了0、1、1、4。新的第二个方程是<span class="math inline">\(x_2+x_3=4\)</span>。矩阵乘法可以按行和按列作用：</p>
+<p><strong>行</strong>：每行的E作用在[A b]上可以给出[EA Eb]的行。</p>
+<p><strong>列</strong>：每列的E作用在[A b]上可以给出[EA Eb]的列。</p>
+<p>请注意作用在这个词，很重要。矩阵就是做了某些事情。矩阵A作用于x产生了b。矩阵E作用于A产生了EA。整个消去操作包含了一系列的行操作，也叫做矩阵乘法。<span class="math inline">\(A\)</span>变成<span class="math inline">\(E_{21}A\)</span>，然后变成<span class="math inline">\(E_{31}E21A\)</span>，最后变成E32E31E21A，这是一个三角矩阵。</p>
+<p>右侧包含在增广矩阵中。最终的结果就是一个三角形方程组。</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +759,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_3_elimination_using_matrices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>

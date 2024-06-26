@@ -1,1 +1,106 @@
 # 2.6 消元法=分解法：*A=LU*
+
+---
+
+1. 每个消去的步骤$E_{ij}$都被$L_{ij}$反转。
+2. 整个正向消去步骤（无行交换）会被***L***反转：$\boldsymbol{L}=(L_{21}L_{31}\dots L_{n1})(L_{32}\dots L_{n2})(L_{43}\dots L_{n3})\dots (L_{n\ n-1})$
+3. $\boldsymbol{L}$是一个下三角。每个乘数$l_{ij}$是第*i*行，第*j*列。
+4. 通过$\boldsymbol{A}=\boldsymbol{L}\boldsymbol{U}=(下三角)(上三角)$从U中恢复A。
+5. 将$A\boldsymbol{x}=\boldsymbol{b}$消去得到$U\boldsymbol{x}=\boldsymbol{c}$。然后回代求解方程。
+6. 解一个三角系统需要$n^2/2$次乘法。消去求U需要$n^3/3$次乘法。
+
+---
+
+线性代数的主要思想，细想之下就会发现其实就是矩阵的因式分解。原始矩阵A被分解成了两个或者三个特殊的矩阵。第一个重要的因式分解是来自于消元。LU是三角阵，因式分解来自于$\boldsymbol{A}=\boldsymbol{LU}$。
+
+我们从一个2×2矩阵开始。我们让第二行减去第一行乘以3倍。$E_{21}$就是上述步骤。然后$E^{-1}_{21}$可以让U回到A：
+
+$$A到U：E_{21}A=\begin{bmatrix}1&0\\-3&1\end{bmatrix}\begin{bmatrix}2&1\\6&8\end{bmatrix}=\begin{bmatrix}2&1\\0&5\end{bmatrix}=U$$
+
+$$U回到A：E^{-1}_{21}U=\begin{bmatrix}1&0\\3&1\end{bmatrix}\begin{bmatrix}2&1\\0&5\end{bmatrix}=\begin{bmatrix}2&1\\6&8\end{bmatrix}=A$$
+
+第二行就是因式分解LU=A。L就包含了所有E的逆。A到U的每一步都包含一个矩阵$E_{ij}$去产生一个ij位置的0。一步步消去后，就得到了上三角U。
+
+因此：
+
+$$(E_{32}E_{31}E_{21})A=U\quad 变成了 A=(E^{-1}_{21}E^{-1}_{31}E^{-1}_{32})U\quad 这就是 A=LU$$
+
+## 说明和示例
+
+第一点：每个逆矩阵$E^{-1}$是一个下三角。其中非对角线项是$l_{ij}$，撤销是使用$-l_{ij}$。$E$和$E^{-1}$主对角线是1。
+
+第二点：所有的$E^{-1}_{ij}$乘以U后得到了A。下三角矩阵乘积的逆矩阵是L。
+
+第三点：每个乘数$l_{ij}$直接放在L的ij位置上。
+
+再来看A=LU：这个消去不包含行交换。上三角U包含了对角线上的主元。下三角L对角线上是1，乘数$l_{ij}$在L的对角线下。所以说这个L就是乘数矩阵，U就是一个消去后的矩阵。
+
+就像：
+
+$$A=\begin{bmatrix}2&1&0\\1&2&1\\0&1&2\end{bmatrix}=\begin{bmatrix}1&0&0\\ \frac{1}{2}&1&0\\0&\frac{2}{3}&1\end{bmatrix}\begin{bmatrix}2&1&0\\0&\frac{3}{2}&1\\0&0&\frac{4}{3}\end{bmatrix}=LU$$
+
+如何确认LU中的0呢？
+
+**A中的行开头为0的，L也如此。**
+
+**A中的列开头为0的，U也如此。**
+
+为了研究A等于LU：我们知道主元行是减去了某些行得到的。他们不是原始的A了。他们是U中的行，我们可以这么计算U的第三行：
+
+$$\begin{equation}
+Row\ 3\ of\ U=(Row\ 3\ of\ A)-l_{31}(Row\ 1\ of\ U)-l_{32}(Row\ 2\ of\ U)
+\end{equation}$$
+
+因此可以改写：
+
+$$\begin{equation}
+Row\ 3\ of\ A=l_{31}(Row\ 1\ of\ U)+l_{32}(Row\ 2\ of\ U)+(Row\ 3\ of\ U)
+\end{equation}$$
+
+可以看到这正是A=LU的第三行。无论A大小都如此。
+
+为了将A=LU进行对称化处理，可以将U除以主元的值（单位化过程），这样U的对角线上就是1了。U可以表示为：
+
+$$U被分为\left[ \begin{array}{cccc}
+d_1& & & \\
+ &d_2& & \\
+ & & \ddots& \\
+ & & & d_n \end{array} \right]
+ \left[ \begin{array}{cccc}
+1&u_{12}/d_1&u_{13}/d_1&\cdot\\
+ &1&u_{23}/d_2&\cdot\\
+  & &\ddots&\vdots\\
+  &&&1
+ \end{array}\right]
+$$
+
+中间这个矩阵被称作D矩阵，所以
+
+三角因式分解可以写成：$\boldsymbol{A=LU}$或$\boldsymbol{A=LDU}$。
+
+$$\begin{equation}
+\begin{bmatrix}1&0\\3&1\end{bmatrix}\begin{bmatrix}2&8\\0&5\end{bmatrix}分解为\begin{bmatrix}1&0\\3&1\end{bmatrix}\begin{bmatrix}2&\\&5\end{bmatrix}\begin{bmatrix}1&4\\0&1\end{bmatrix}
+\end{equation}$$
+
+## 一个方阵=两个三角矩阵
+
+矩阵L包含着高斯消元的步骤。我们在求解Ax=b的时候怎么用呢？在他的右边我们先用$L^{-1}$再用$U^{-1}$。
+
+1.  因子（通过消去矩阵A得到L和U）
+2.  解（使用L消去b然后使用U进行反向代回）
+
+如何解方程呢？首先在右侧应用消去的方法，此时b就会变为c，然后回代后解开方程即可：
+
+$$\begin{equation}
+消元及回代：解\quad Lc=b\quad然后解\quad Ux=c
+\end{equation}$$
+
+应用一下：
+
+$$
+Ax=b \quad \begin{matrix}u+2v=5\\4u+9v=21\end{matrix}\qquad变为\qquad \begin{matrix}u+2v=5\\v=1\end{matrix}\quad Ux=c
+$$
+
+Lc=b下三角系统：$\begin{bmatrix}1&0\\4&1\end{bmatrix}\begin{bmatrix}c\end{bmatrix}=\begin{bmatrix}5\\21\end{bmatrix}$求解出$c=\begin{bmatrix}5\\1\end{bmatrix}$。
+
+Ux=c上三角系统：$\begin{bmatrix}1&2\\0&1\end{bmatrix}\begin{bmatrix}x\end{bmatrix}=\begin{bmatrix}5\\1\end{bmatrix}$求解出$x=\begin{bmatrix}3\\1\end{bmatrix}$。

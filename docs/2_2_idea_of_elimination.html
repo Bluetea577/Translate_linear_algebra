@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./2_3_elimination_using_matrices.html" rel="next">
 <link href="./2_1_vector_and_linearequ.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -126,6 +127,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -230,7 +234,14 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#消元法可能存在的问题" id="toc-消元法可能存在的问题" class="nav-link active" data-scroll-target="#消元法可能存在的问题">消元法可能存在的问题</a></li>
+  <li><a href="#三个方程三个未知数" id="toc-三个方程三个未知数" class="nav-link" data-scroll-target="#三个方程三个未知数">三个方程三个未知数</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_2_idea_of_elimination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -269,8 +280,95 @@ window.Quarto = {
 <p><span class="math display">\[\begin{align}
 消元前：\quad \begin{matrix}x-2y=1\\3x+2y=11\end{matrix}\qquad消元后：\quad \begin{matrix}x-2y=1\\8y=8\end{matrix} \notag
 \end{align}\]</span></p>
+<p>新方程可以得到y=1，回代后得到x=3，因此方程可解。</p>
+<p>消元构造了一个上三角系统，这是它的目标。从三角系统的最下面得到的结果向上逐层带入来求解的过程叫做回代。这通常被用作上三角系统。</p>
+<p>下面来看：原始方程也有同样的解。下图2-5展示了消元前后两个系统，方程被展示为两条线，其相交于方程的解对应的点。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-5.jpg" class="img-fluid figure-img"></p>
+<figcaption>图2-5</figcaption>
+</figure>
+</div>
+<center>
+图2-5 消元前后
+</center>
+<p><br></p>
+<p>我们如何从消元前的线找到消元后的线呢？是通过将第二个方程减去第一个方程乘以3后得到的。差不多是这样的：</p>
+<p><em>消去x的方法：将第2个方程减去第1个方程的倍数</em></p>
+<p>上述情况是将第一个方程乘以一个乘数<span class="math inline">\(l=3\)</span>，这个乘数如何得到？第一个方程包含1x，所以第一个主元就是1（x的系数）。第二个方程包含3x，所以乘数就是3。相减后就得到了0和三角形。</p>
+<p>乘数的规则似乎跃然纸上。如果是下面的例子，这个乘数就是<span class="math inline">\(l=\frac{3}{4}\)</span>：</p>
+<p><span class="math display">\[\begin{matrix}4x-8y=4\\3x+2y=11\end{matrix}\qquad \begin{matrix}消元后\\（方程2减去方程1乘\frac{3}{4}）\end{matrix} \begin{matrix}4x-8y=4\\8y=8\end{matrix}\]</span></p>
+<p>因此：</p>
+<table>
+<tbody><tr><td bgcolor="DarkSeaGreen">
+主元（pivot） = 要被消去的行内第一个非零数<br> 乘数（multiplier）=被消元项除以主元=3/4
+</td>
+</tr></tbody></table>
+<p>消元后的主元在三角形的对角线上。</p>
+<section id="消元法可能存在的问题" class="level2">
+<h2 class="anchored" data-anchor-id="消元法可能存在的问题">消元法可能存在的问题</h2>
+<p>通常情况下，消元法产生的主元会帮我们解开方程。但是也有可能会失败的。一些情况，可能会让我们去除以0，这是做不到的。可能会有一些方法来调整后继续，或者会无法消元。</p>
+<p>下面两个例子代表性的说明了两种失败的情况。例1因为无解而失败；例2因为有太多解而失败；例3在交换方程后成功了。</p>
+<p>例1：</p>
+<p><span class="math display">\[\begin{matrix}x-2y=1\\3x-6y=11\end{matrix}\qquad \begin{matrix}消元后\\（方程2减去方程1乘3）\end{matrix} \begin{matrix}x-2y=1\\0y=8\end{matrix}\]</span></p>
+<p>明显无解。看行图列图也能看出，两条线无交点，两条向量处于同一直线。那么如果我们将方程右边改为1，3，整条直线都是解，也就是例2。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-6.jpg" class="img-fluid figure-img"></p>
+<figcaption>图2-6</figcaption>
+</figure>
+</div>
+<center>
+图2-6 例1的行图和列图：无解
+</center>
+<p><br></p>
+<p>例2： <span class="math display">\[\begin{matrix}x-2y=1\\3x-6y=3\end{matrix}\qquad \begin{matrix}消元后\\（方程2减去方程1乘3）\end{matrix} \begin{matrix}x-2y=1\\0y=0\end{matrix}\]</span></p>
+<p>这里所有的y都可以满足0y=0。它的行图列图如下，可以看到方程有无数解。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\image/2_solve/2-7.jpg" class="img-fluid figure-img"></p>
+<figcaption>图2-7</figcaption>
+</figure>
+</div>
+<center>
+图2-7 例2的行图列图：无数解
+</center>
+<p><br></p>
+<p>例3：</p>
+<p>主元为0，但是可以通过交换来解决：</p>
+<p><span class="math display">\[\begin{matrix}0x+2y=4\\3x-2y=5\end{matrix}\qquad 交换两个方程 \begin{matrix}3x-2y=5\\2y=4\end{matrix}\]</span></p>
+<p>交换后，方程本身就是三角形的了。已经可以回代进行求解了。</p>
+<p>例子1和2是奇异的——它们没有第二个主元了。例子3是非奇异的——它们有完整的主元且只有一个解。奇异的方程没有解或有无穷多解，主元必须不为0，因为我们要除以它们。</p>
+</section>
+<section id="三个方程三个未知数" class="level2">
+<h2 class="anchored" data-anchor-id="三个方程三个未知数">三个方程三个未知数</h2>
+<p>其实方法是类似的，或许你没有学习过本章节也早已经会解这些方程了，但是请耐心，经过这样的过程，将会对于消元有更加深刻的理解。让我们继续：</p>
+<p>如下方程：</p>
+<p><span class="math display">\[\begin{align}
+2x+4y-2z&amp;=2 \notag\\
+4x+9y-3z&amp;=8\\
+-2x-3y+7z&amp;=10 \notag
+\end{align}\]</span></p>
+<p>怎么做？第一个主元是第一行的2。下面我们想要消去的主元是4，第一个乘数就是4/2=2。我们通过乘以<span class="math inline">\(l_{21}=2\)</span>，然后将其减去来消去第二个方程的主元得到y+z=4。第三行同理，乘数为-1，消去后得到y+5z=12。</p>
+<p>然后我们就得到了1y+1z=4和1y+5z=12，接下来就哭呀进一步去消除y了，经过操作后我们原始的<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>已经变成了上三角的<span class="math inline">\(U\boldsymbol{x}=\boldsymbol{c}\)</span>了:</p>
+<p><span class="math display">\[\begin{align}
+2x+4y-2z&amp;=2 \qquad 2x+4y-2z&amp;=2\notag\\
+4x+9y-3z&amp;=8\qquad \qquad  1y+1z&amp;=4\\
+-2x-3y+7z&amp;=10 \qquad \qquad \qquad 4z&amp;=8\notag
+\end{align}\]</span></p>
+<p>接着回代就可以解了。解出(x,y,z)=(-1,2,2)。行图展示了三个平面通过x的解的点。列图展示了列向量的组合：</p>
+<p><span class="math display">\[\begin{equation}
+A\boldsymbol{x}=(-1)\begin{bmatrix}2\\4\\-2\end{bmatrix}+2\begin{bmatrix}4\\9\\-3\end{bmatrix}+2\begin{bmatrix}-2\\-3\\7\end{bmatrix}=\begin{bmatrix}2\\8\\10\end{bmatrix}=\boldsymbol{b}
+\end{equation}\]</span></p>
+<p>4×4的或者n×n的方程，消元也是同样的方法：</p>
+<ul>
+<li>第1列：使用第一个方程在第一个主元下创建0</li>
+<li>第2列：使用新的方程在第二个主元下创建0</li>
+<li>第3-n列：持续按上述方法消元来制作上三角U</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -680,7 +778,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_2_idea_of_elimination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>

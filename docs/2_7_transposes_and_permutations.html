@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./summary.html" rel="next">
 <link href="./2_6_elimination_factorization.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,6 +127,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +234,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#内积的意义" id="toc-内积的意义" class="nav-link active" data-scroll-target="#内积的意义">内积的意义</a></li>
+  <li><a href="#对称矩阵" id="toc-对称矩阵" class="nav-link" data-scroll-target="#对称矩阵">对称矩阵</a></li>
+  <li><a href="#构造对称矩阵ataaatldlt" id="toc-构造对称矩阵ataaatldlt" class="nav-link" data-scroll-target="#构造对称矩阵ataaatldlt">构造对称矩阵：<span class="math inline">\(A^TA\)</span>、<span class="math inline">\(AA^T\)</span>、<span class="math inline">\(LDL^T\)</span></a></li>
+  <li><a href="#排列矩阵" id="toc-排列矩阵" class="nav-link" data-scroll-target="#排列矩阵">排列矩阵</a></li>
+  <li><a href="#包括行交换的palu因式分解" id="toc-包括行交换的palu因式分解" class="nav-link" data-scroll-target="#包括行交换的palu因式分解">包括行交换的PA=LU因式分解</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_7_transposes_and_permutations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,8 +268,73 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<ol type="1">
+<li><span class="math inline">\(Ax\)</span>、<span class="math inline">\(AB\)</span>和<span class="math inline">\(A^{-1}\)</span>的转置是<span class="math inline">\(x^{T}A^{T}\)</span>、<span class="math inline">\(B^{T}A^{T}\)</span>和<span class="math inline">\((A^{T})^{-1}\)</span>。</li>
+<li>点积（内积）有<span class="math inline">\(x\cdot y=x^{T}y\)</span>，这是<span class="math inline">\((1\times n)(n\times 1)=(1\times 1)\)</span>。外积为<span class="math inline">\(xy^{T}=列\times 行=(n\times 1)(1\times n)=(n\times n)\)</span>。</li>
+<li><span class="math inline">\(Ax\cdot y=x\cdot A^{T}y\)</span>因为<span class="math inline">\((Ax)^{T}y=x^{T}A^{T}y=x^{T}(A^{T}y)\)</span>。</li>
+<li>对称矩阵<span class="math inline">\(S^{T}=S\)</span>（乘积依然是对称的）。</li>
+<li>正交矩阵<span class="math inline">\(Q^{T}=Q^{-1}\)</span>。Q的列向量是正交的单位向量。</li>
+<li>排列矩阵P与I有相同的行。有n!个不同的顺序。</li>
+<li>Px给分量<span class="math inline">\(x_1,x_2,\dots, x_n\)</span>以新顺序排序。且<span class="math inline">\(P^{T}=P^{-1}\)</span>。</li>
+</ol>
+<hr>
+<p>我们还需要一个矩阵，比逆矩阵简单，叫转置矩阵。<span class="math inline">\(A\)</span>的转置为<span class="math inline">\(A^{T}\)</span>，列行转换。</p>
+<p>如果A是m×n的，转置就是n×m：</p>
+<p>如果<span class="math inline">\(A=\begin{bmatrix}1&amp;2&amp;3\\0&amp;0&amp;4\end{bmatrix}\)</span>那么<span class="math inline">\(A^{T}=\begin{bmatrix}1&amp;0\\2&amp;0\\3&amp;4\end{bmatrix}\)</span></p>
+<p>其中<span class="math inline">\(A^T\)</span>的第i行，第j列是A的第j行，第i列：</p>
+<p><span class="math inline">\((A^T)_{ij}=A_{ji}\)</span></p>
+<p>下三角矩阵的转置是上三角矩阵。</p>
+<p>转置符合以下规则：</p>
+<p><strong>加：</strong><span class="math inline">\(A+B的转置是A^T+B^T\)</span></p>
+<p><strong>乘：</strong><span class="math inline">\(AB的转置(AB)^T=B^TA^T\)</span></p>
+<p><strong>逆：</strong><span class="math inline">\((A^{-1})^T=(A^T)^{-1}\)</span></p>
+<p>从维度的角度来记忆理解会比较简单，A比如是m×t，B是t×n，AB就是m×n，AB转置就是n×m。由此来看A的转置t×m，B的转置n×t两者相乘要得到n×m的话，需要是B转置×A转置。</p>
+<p>也有<span class="math inline">\((ABC)^T=C^TB^TA^T\)</span>。由此有：<span class="math inline">\(A=LDU就有A^T=U^TD^TL^T\)</span>。对于主元矩阵<span class="math inline">\(D=D^T\)</span>。</p>
+<p>对于逆矩阵：<span class="math inline">\(A^{-1}A=I\)</span>转置后有<span class="math inline">\(A^T(A^{-1})^{T}=I\)</span>。</p>
+<p>A转置可逆的条件是A可逆。</p>
+<section id="内积的意义" class="level2">
+<h2 class="anchored" data-anchor-id="内积的意义">内积的意义</h2>
+<p>内积是x和y向量各项的乘积之和。让我们用矩阵来表示吧。</p>
+<p>T在内：点积或内积是<span class="math inline">\(x^Ty\qquad (1\times n)(n\times 1)\)</span></p>
+<p>T在外：第一级积或外积是<span class="math inline">\(xy^T\qquad (n\times 1)(1\times n)\)</span></p>
+<p><span class="math inline">\(x^Ty\)</span>是一个数字，而<span class="math inline">\(xy^T\)</span>是一个矩阵。量子力学中会将其写成&lt; x|y &gt;（内积）和|x &gt;&lt; y|（外积）。</p>
+<p>还有三个内积有意义的例子：</p>
+<p>力学：做功=(力)(距离)=<span class="math inline">\(x^Tf\)</span></p>
+<p>电学：热损失=(电压降)(电流)=<span class="math inline">\(e^Ty\)</span></p>
+<p>经济学：收入=(数量)(价格)=<span class="math inline">\(q^Tp\)</span></p>
+<p>另外有<span class="math inline">\((Ax)^{T}y=x^{T}A^{T}y=x^{T}(A^{T}y)\)</span></p>
+</section>
+<section id="对称矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="对称矩阵">对称矩阵</h2>
+<p>对于一个对称矩阵来说，A和A的转置是没有区别的。我们将对称矩阵用字母S表示：</p>
+<p>对称矩阵有：<span class="math inline">\(S^T=S\)</span>，这意味着<span class="math inline">\(s_{ji}=s_{ij}\)</span>。</p>
+<p>对称矩阵的逆矩阵也是对称的，有：<span class="math inline">\((S^{-1})^T=(S^T)^{-1}=S^{-1}\)</span>。</p>
+</section>
+<section id="构造对称矩阵ataaatldlt" class="level2">
+<h2 class="anchored" data-anchor-id="构造对称矩阵ataaatldlt">构造对称矩阵：<span class="math inline">\(A^TA\)</span>、<span class="math inline">\(AA^T\)</span>、<span class="math inline">\(LDL^T\)</span></h2>
+<p>一个矩阵A（矩形矩阵也可），<span class="math inline">\(A^TA\)</span>会自动生成一个对称矩阵。</p>
+<p><span class="math display">\[\begin{equation}
+A^TA的转置是A^T(A^T)^T
+\end{equation}\]</span></p>
+<p>矩阵<span class="math inline">\(AA^T\)</span>也是对称矩阵，但是它是和<span class="math inline">\(A^TA\)</span>不同的。根据经验大多数以矩形矩阵开始的都是以<span class="math inline">\(A^TA\)</span>或<span class="math inline">\(AA^T\)</span>结束的。</p>
+<p>当对称矩阵消去时，因式分解为LDU时，<span class="math inline">\(U=L^T\)</span>，也就是<span class="math inline">\(S=LDL^T\)</span>。</p>
+</section>
+<section id="排列矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="排列矩阵">排列矩阵</h2>
+<p>排列矩阵每一列都只有一个单独的1。<span class="math inline">\(P^T\)</span>也是排列矩阵，两个排列矩阵的积也是排列矩阵。排列矩阵的逆矩阵也是排列矩阵。</p>
+<p>最简单的排列矩阵P=I没有交换。然后就是行交换Pij。将I的所有可能的行交换列出来，就得到了所有可能的排列矩阵：</p>
+<p>一个排列矩阵P有着单位矩阵I的所有行排序</p>
+<p>重点：<span class="math inline">\(P^{-1}\)</span>总是和<span class="math inline">\(P^T\)</span>相等。<span class="math inline">\(PP^T=I\)</span></p>
+</section>
+<section id="包括行交换的palu因式分解" class="level2">
+<h2 class="anchored" data-anchor-id="包括行交换的palu因式分解">包括行交换的PA=LU因式分解</h2>
+<p>我们希望你能记住A=LU。它开始于<span class="math inline">\(A=(E^{-1}_{21}\cdots E^{-1}_{ij}\cdots)U\)</span>。每个消去步骤都是由一个<span class="math inline">\(E_{ij}\)</span>，并且由<span class="math inline">\(E^{-1}_{ij}\)</span>逆转。这些逆被压缩为L。其对角线是1，结果是A=LU。</p>
+<p>但是不是每个矩阵都可以这样的因式分解，有时需要进行行交换来产生主元。这些行交换被组合成了一个排列矩阵P。我们可以在消去前就进行行交换，也可以在消去后：（1）<span class="math inline">\(PA=LU\)</span>（2）<span class="math inline">\(A=L_1P_1U_1\)</span>。</p>
+<p><span class="math inline">\(PA=LU\)</span>是常用的，可能不如<span class="math inline">\(A=L_1P_1U_1\)</span>显得优雅。不必要在另一种形式上花费太多功夫，最重要的情况是P=I的情况，也就是没有行交换。</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +744,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_7_transposes_and_permutations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>

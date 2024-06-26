@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./2_6_elimination_factorization.html" rel="next">
 <link href="./2_4_rules_matrix_opera.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,6 +127,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +234,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ab的逆" id="toc-ab的逆" class="nav-link active" data-scroll-target="#ab的逆">AB的逆</a></li>
+  <li><a href="#通过高斯消元计算a-1" id="toc-通过高斯消元计算a-1" class="nav-link" data-scroll-target="#通过高斯消元计算a-1">通过高斯消元计算<span class="math inline">\(A^{-1}\)</span></a></li>
+  <li><a href="#奇异与可逆" id="toc-奇异与可逆" class="nav-link" data-scroll-target="#奇异与可逆">奇异与可逆</a></li>
+  <li><a href="#认识可逆矩阵" id="toc-认识可逆矩阵" class="nav-link" data-scroll-target="#认识可逆矩阵">认识可逆矩阵</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_5_inverse_matrices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,8 +267,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<ol type="1">
+<li>如果方阵A有逆矩阵，那么<span class="math inline">\(A^{-1}A=I\)</span>和<span class="math inline">\(AA^{-1}=I\)</span>都成立。</li>
+<li>可逆性的算法检验方法是消去法：A需要有n个非零的主元。</li>
+<li>可逆性的代数检验方法是A的行列式：det A必须不为零。</li>
+<li>可逆性的方程检验方法为Ax=0：x=0必须只有一个解。</li>
+<li>如果AB都是可逆的，那么：<span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span>。</li>
+<li><span class="math inline">\(AA^{-1}=I\)</span>是n个关于<span class="math inline">\(A^{-1}\)</span>列的方程。高斯消元会将<span class="math inline">\([A\ I]\)</span>变为<span class="math inline">\([I\ A^{-1}]\)</span>。</li>
+<li>最后给出了14个A可逆的等价条件。</li>
+</ol>
+<hr>
+<p>假设A是方阵，那么A的逆矩阵也是同样的大小。A做什么，<span class="math inline">\(A^{-1}\)</span>就会抵消他。</p>
+<p>如果A是可逆的，那么<span class="math inline">\(A^{-1}\)</span>就存在，也被称作为A逆。且以下等式成立：</p>
+<p><span class="math display">\[\begin{equation}
+A^{-1}A=I \qquad AA^{-1}I
+\end{equation}\]</span></p>
+<p>但不是所有的矩阵都有逆矩阵。这是我们关于方阵的第一个问题，A是否可逆。但这不意味着我们马上算出<span class="math inline">\(A^{-1}\)</span>。许多情况下，我们是不会去算它的。以下是注意事项：</p>
+<p>注意1：当且仅当消元产生n个主元的时候，逆存在。</p>
+<p>注意2：矩阵A不存在两个不同的逆。</p>
+<p>注意3：如果A是可逆的，<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>有且仅有的解为<span class="math inline">\(\boldsymbol{x}=A^{-1}\boldsymbol{b}\)</span>。</p>
+<p>注意4（重要）：如果非零向量<span class="math inline">\(\boldsymbol{x}\)</span>使得<span class="math inline">\(A\boldsymbol{x}=0\)</span>。那么A向量是没有逆矩阵的，因为没有矩阵可以将0变回为x。</p>
+<p>注意5：一个2×2的矩阵可逆，有且仅有ad-bc不为0时可以实现：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&amp;-b\\-c&amp;a\end{bmatrix}
+\end{equation}\]</span></p>
+<p>其中，ad-bc被称为A的行列式。A矩阵可逆的话，他的行列式不为零。</p>
+<p>注意6：一个对角元素不为零的矩阵有逆矩阵：</p>
+<p><span class="math display">\[A=\left[ \begin{array}{ccc}
+b_1&amp; &amp; \\
+&amp; \ddots&amp; \\
+  &amp; &amp; b_n \end{array} \right] \qquad
+  A^{-1}=\left[ \begin{array}{ccc}
+  1/d_1&amp; &amp; \\
+   &amp; \ddots &amp; \\
+    &amp; &amp; 1/d_n
+  \end{array}\right]\]</span></p>
+<section id="ab的逆" class="level2">
+<h2 class="anchored" data-anchor-id="ab的逆">AB的逆</h2>
+<p>对于两个数来说，a=3，b=-3。两者都有逆1/3和-1/3。但两者的和为0，没有逆。二者的积为-9，就有了逆。矩阵与这类似，A+B很难有一个固定的结论。当且仅当AB都分别有逆的时候，AB有逆：</p>
+<p><span class="math display">\[\begin{equation}
+(AB)^{-1}=B^{-1}A^{-1}
+\end{equation}\]</span></p>
+<p>这说明了一个基本的数学规则：逆的顺序是相反的。三者的时候也是这样的：</p>
+<p><span class="math display">\[\begin{equation}
+(ABC)^{-1}=C^{-1}B^{-1}A^{-1}
+\end{equation}\]</span></p>
+<p>逆矩阵与原矩阵的乘积由于顺序相反会出现一些现象，比如，我们有矩阵EF，二者都可逆。E的作用是将第二行减去5乘第一行，F作用是将第三行减去4乘第二行。那么我们来看FE的乘积与其逆有何不同，FE的第三行第一列会有一个新的数值20出现，而其逆则是0。这就是因为FE在先进行F变换的时候，第三行发生过一次变化，而其逆顺序调换先进行的是E的逆变换，没影响第三行的情况。注意：这就是下一节，我们选择A=LU的时候，从U到A乘数刚好落在下三角L上。</p>
+</section>
+<section id="通过高斯消元计算a-1" class="level2">
+<h2 class="anchored" data-anchor-id="通过高斯消元计算a-1">通过高斯消元计算<span class="math inline">\(A^{-1}\)</span></h2>
+<p>下面我们使用高斯消元法来求<span class="math inline">\(A^{-1}\)</span>，也就是求解<span class="math inline">\(AA^{-1}=1\)</span>。<em>A</em>乘以<span class="math inline">\(A^{-1}\)</span>的第一列（x1）可以得到<em>I</em>的第一列（e1）。也就得到了<span class="math inline">\(Ax_1=e_1=(1,0,0)\)</span>。同样还有另外两列的方程：</p>
+<p><span class="math display">\[\begin{equation}
+AA^{-1}=A[x_1\ \ x_2\ \ x_3]=[e_1\ \ e_2\ \ e_3]=I
+\end{equation}\]</span></p>
+<p>高斯消元法得到<span class="math inline">\(A^{-1}\)</span>需要解n个方程。我们会构造一个<span class="math inline">\([A\ \ I]\)</span>，我们实际操作一下：</p>
+<p><span class="math display">\[\begin{align}
+\begin{bmatrix}K&amp;e_1&amp;e_2&amp;e_3\end{bmatrix}&amp;=\begin{bmatrix}2&amp;-1&amp;0&amp;1&amp;0&amp;0\\-1&amp;2&amp;-1&amp;0&amp;1&amp;0\\0&amp;-1&amp;2&amp;0&amp;0&amp;1\end{bmatrix}\notag\\
+&amp;\to \begin{bmatrix}2&amp;-1&amp;0&amp;1&amp;0&amp;0\\0&amp;\frac{3}{2}&amp;-1&amp;\frac{1}{2}&amp;1&amp;0\\0&amp;-1&amp;2&amp;0&amp;0&amp;1\end{bmatrix}\qquad(\frac{1}{2}\ row1+row2)\notag\\
+&amp;\to \begin{bmatrix}2&amp;-1&amp;0&amp;1&amp;0&amp;0\\0&amp;\frac{3}{2}&amp;-1&amp;\frac{1}{2}&amp;1&amp;0\\0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1\end{bmatrix}\qquad(\frac{2}{3}\ row2+row3) \notag
+\end{align}\]</span></p>
+<p>现在针对<span class="math inline">\(K\)</span>矩阵我们有了<span class="math inline">\(K^{-1}\)</span>，它的前三列是一个上三角矩阵U，主元2，<span class="math inline">\(\frac{3}{2}\)</span>，<span class="math inline">\(\frac{4}{3}\)</span>在对角线上。接下来是进行回代：</p>
+<p><span class="math display">\[\begin{align}
+&amp;\to \begin{bmatrix}2&amp;-1&amp;0&amp;1&amp;0&amp;0\\0&amp;\frac{3}{2}&amp;0&amp;\frac{3}{4}&amp;\frac{3}{2}&amp;\frac{3}{4}\\0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1\end{bmatrix}\qquad(\frac{4}{3}\ row3+row2) \notag\\
+&amp;\to \begin{bmatrix}2&amp;0&amp;0&amp;\frac{3}{2}&amp;1&amp;\frac{1}{2}\\0&amp;\frac{3}{2}&amp;0&amp;\frac{3}{4}&amp;\frac{3}{2}&amp;\frac{3}{4}\\0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1\end{bmatrix}\qquad(\frac{2}{3}\ row2+row1) \notag
+\end{align}\]</span></p>
+<p>最后一步是单位化：</p>
+<p><span class="math display">\[\begin{bmatrix}1&amp;0&amp;0&amp;\frac{3}{4}&amp;\frac{1}{2}&amp;\frac{1}{4}\\0&amp;1&amp;0&amp;\frac{1}{2}&amp;1&amp;\frac{1}{2}\\0&amp;0&amp;1&amp;\frac{1}{4}&amp;\frac{1}{2}&amp;\frac{3}{4}\end{bmatrix}=\begin{bmatrix}I&amp;x_1&amp;x_2&amp;x_3\end{bmatrix}=\begin{bmatrix}I&amp;K^{-1}\end{bmatrix}\]</span></p>
+<p>消去时将A变为I的同时创建了逆矩阵。对于大矩阵，可能不想要得到其逆矩阵，但对于小矩阵来说，得到逆矩阵是值得的。我们有以下规律：</p>
+<ol type="1">
+<li><span class="math inline">\(K\)</span>在对角线上对称，那么<span class="math inline">\(K^{-1}\)</span>也是如此。</li>
+<li>当<span class="math inline">\(K\)</span>是三角矩阵（只有三个非零对角）的时候。<span class="math inline">\(K^{-1}\)</span>是一个非零的密集矩阵。这也是我们不常计算逆矩阵的原因。</li>
+<li>主元的乘积是4，这也是矩阵<span class="math inline">\(K\)</span>的行列式。</li>
+</ol>
+<p>这就是为什么逆矩阵需要行列式不为0，因为我们要进行除法。</p>
+</section>
+<section id="奇异与可逆" class="level2">
+<h2 class="anchored" data-anchor-id="奇异与可逆">奇异与可逆</h2>
+<p>我们回到中心问题。哪些矩阵有逆矩阵？本节的开头提出了主元检验：当<span class="math inline">\(A\)</span>有完整的n个主元时，<span class="math inline">\(A^{-1}\)</span>存在。可以使用高斯消元来证明：</p>
+<ol type="1">
+<li>有n个主元，消元需要解的方程是<span class="math inline">\(Ax_i=e_i\)</span>。<span class="math inline">\(x_i\)</span>的诸多列组成了<span class="math inline">\(A^{-1}\)</span>。然后<span class="math inline">\(AA^{-1}=I\)</span>，<span class="math inline">\(A^{-1}\)</span>是右侧逆矩阵。</li>
+<li>消元实际上是一系列E，P，D的矩阵乘法。</li>
+</ol>
+<p>证明略。</p>
+<p>当且仅当三角矩阵对角线没有元素为0时，该三角矩阵可逆。</p>
+</section>
+<section id="认识可逆矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="认识可逆矩阵">认识可逆矩阵</h2>
+<p>有些矩阵可以很快的分辨出是可逆矩阵。</p>
+<p>对角占优矩阵是可逆的。（当矩阵的对角线元素都大于该行其余部分的总和时）</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +768,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_5_inverse_matrices.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>

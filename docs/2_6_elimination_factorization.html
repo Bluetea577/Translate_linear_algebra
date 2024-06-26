@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./2_7_transposes_and_permutations.html" rel="next">
 <link href="./2_5_inverse_matrices.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -97,6 +127,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Linear_algebra</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Bluetea577/Translate_linear_algebra" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +234,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#说明和示例" id="toc-说明和示例" class="nav-link active" data-scroll-target="#说明和示例">说明和示例</a></li>
+  <li><a href="#一个方阵两个三角矩阵" id="toc-一个方阵两个三角矩阵" class="nav-link" data-scroll-target="#一个方阵两个三角矩阵">一个方阵=两个三角矩阵</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_6_elimination_factorization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,8 +265,82 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<ol type="1">
+<li>每个消去的步骤<span class="math inline">\(E_{ij}\)</span>都被<span class="math inline">\(L_{ij}\)</span>反转。</li>
+<li>整个正向消去步骤（无行交换）会被<strong><em>L</em></strong>反转：<span class="math inline">\(\boldsymbol{L}=(L_{21}L_{31}\dots L_{n1})(L_{32}\dots L_{n2})(L_{43}\dots L_{n3})\dots (L_{n\ n-1})\)</span></li>
+<li><span class="math inline">\(\boldsymbol{L}\)</span>是一个下三角。每个乘数<span class="math inline">\(l_{ij}\)</span>是第<em>i</em>行，第<em>j</em>列。</li>
+<li>通过<span class="math inline">\(\boldsymbol{A}=\boldsymbol{L}\boldsymbol{U}=(下三角)(上三角)\)</span>从U中恢复A。</li>
+<li>将<span class="math inline">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>消去得到<span class="math inline">\(U\boldsymbol{x}=\boldsymbol{c}\)</span>。然后回代求解方程。</li>
+<li>解一个三角系统需要<span class="math inline">\(n^2/2\)</span>次乘法。消去求U需要<span class="math inline">\(n^3/3\)</span>次乘法。</li>
+</ol>
+<hr>
+<p>线性代数的主要思想，细想之下就会发现其实就是矩阵的因式分解。原始矩阵A被分解成了两个或者三个特殊的矩阵。第一个重要的因式分解是来自于消元。LU是三角阵，因式分解来自于<span class="math inline">\(\boldsymbol{A}=\boldsymbol{LU}\)</span>。</p>
+<p>我们从一个2×2矩阵开始。我们让第二行减去第一行乘以3倍。<span class="math inline">\(E_{21}\)</span>就是上述步骤。然后<span class="math inline">\(E^{-1}_{21}\)</span>可以让U回到A：</p>
+<p><span class="math display">\[A到U：E_{21}A=\begin{bmatrix}1&amp;0\\-3&amp;1\end{bmatrix}\begin{bmatrix}2&amp;1\\6&amp;8\end{bmatrix}=\begin{bmatrix}2&amp;1\\0&amp;5\end{bmatrix}=U\]</span></p>
+<p><span class="math display">\[U回到A：E^{-1}_{21}U=\begin{bmatrix}1&amp;0\\3&amp;1\end{bmatrix}\begin{bmatrix}2&amp;1\\0&amp;5\end{bmatrix}=\begin{bmatrix}2&amp;1\\6&amp;8\end{bmatrix}=A\]</span></p>
+<p>第二行就是因式分解LU=A。L就包含了所有E的逆。A到U的每一步都包含一个矩阵<span class="math inline">\(E_{ij}\)</span>去产生一个ij位置的0。一步步消去后，就得到了上三角U。</p>
+<p>因此：</p>
+<p><span class="math display">\[(E_{32}E_{31}E_{21})A=U\quad 变成了 A=(E^{-1}_{21}E^{-1}_{31}E^{-1}_{32})U\quad 这就是 A=LU\]</span></p>
+<section id="说明和示例" class="level2">
+<h2 class="anchored" data-anchor-id="说明和示例">说明和示例</h2>
+<p>第一点：每个逆矩阵<span class="math inline">\(E^{-1}\)</span>是一个下三角。其中非对角线项是<span class="math inline">\(l_{ij}\)</span>，撤销是使用<span class="math inline">\(-l_{ij}\)</span>。<span class="math inline">\(E\)</span>和<span class="math inline">\(E^{-1}\)</span>主对角线是1。</p>
+<p>第二点：所有的<span class="math inline">\(E^{-1}_{ij}\)</span>乘以U后得到了A。下三角矩阵乘积的逆矩阵是L。</p>
+<p>第三点：每个乘数<span class="math inline">\(l_{ij}\)</span>直接放在L的ij位置上。</p>
+<p>再来看A=LU：这个消去不包含行交换。上三角U包含了对角线上的主元。下三角L对角线上是1，乘数<span class="math inline">\(l_{ij}\)</span>在L的对角线下。所以说这个L就是乘数矩阵，U就是一个消去后的矩阵。</p>
+<p>就像：</p>
+<p><span class="math display">\[A=\begin{bmatrix}2&amp;1&amp;0\\1&amp;2&amp;1\\0&amp;1&amp;2\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;0\\ \frac{1}{2}&amp;1&amp;0\\0&amp;\frac{2}{3}&amp;1\end{bmatrix}\begin{bmatrix}2&amp;1&amp;0\\0&amp;\frac{3}{2}&amp;1\\0&amp;0&amp;\frac{4}{3}\end{bmatrix}=LU\]</span></p>
+<p>如何确认LU中的0呢？</p>
+<p><strong>A中的行开头为0的，L也如此。</strong></p>
+<p><strong>A中的列开头为0的，U也如此。</strong></p>
+<p>为了研究A等于LU：我们知道主元行是减去了某些行得到的。他们不是原始的A了。他们是U中的行，我们可以这么计算U的第三行：</p>
+<p><span class="math display">\[\begin{equation}
+Row\ 3\ of\ U=(Row\ 3\ of\ A)-l_{31}(Row\ 1\ of\ U)-l_{32}(Row\ 2\ of\ U)
+\end{equation}\]</span></p>
+<p>因此可以改写：</p>
+<p><span class="math display">\[\begin{equation}
+Row\ 3\ of\ A=l_{31}(Row\ 1\ of\ U)+l_{32}(Row\ 2\ of\ U)+(Row\ 3\ of\ U)
+\end{equation}\]</span></p>
+<p>可以看到这正是A=LU的第三行。无论A大小都如此。</p>
+<p>为了将A=LU进行对称化处理，可以将U除以主元的值（单位化过程），这样U的对角线上就是1了。U可以表示为：</p>
+<p><span class="math display">\[U被分为\left[ \begin{array}{cccc}
+d_1&amp; &amp; &amp; \\
+&amp;d_2&amp; &amp; \\
+&amp; &amp; \ddots&amp; \\
+&amp; &amp; &amp; d_n \end{array} \right]
+\left[ \begin{array}{cccc}
+1&amp;u_{12}/d_1&amp;u_{13}/d_1&amp;\cdot\\
+&amp;1&amp;u_{23}/d_2&amp;\cdot\\
+  &amp; &amp;\ddots&amp;\vdots\\
+  &amp;&amp;&amp;1
+\end{array}\right]
+\]</span></p>
+<p>中间这个矩阵被称作D矩阵，所以</p>
+<p>三角因式分解可以写成：<span class="math inline">\(\boldsymbol{A=LU}\)</span>或<span class="math inline">\(\boldsymbol{A=LDU}\)</span>。</p>
+<p><span class="math display">\[\begin{equation}
+\begin{bmatrix}1&amp;0\\3&amp;1\end{bmatrix}\begin{bmatrix}2&amp;8\\0&amp;5\end{bmatrix}分解为\begin{bmatrix}1&amp;0\\3&amp;1\end{bmatrix}\begin{bmatrix}2&amp;\\&amp;5\end{bmatrix}\begin{bmatrix}1&amp;4\\0&amp;1\end{bmatrix}
+\end{equation}\]</span></p>
+</section>
+<section id="一个方阵两个三角矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="一个方阵两个三角矩阵">一个方阵=两个三角矩阵</h2>
+<p>矩阵L包含着高斯消元的步骤。我们在求解Ax=b的时候怎么用呢？在他的右边我们先用<span class="math inline">\(L^{-1}\)</span>再用<span class="math inline">\(U^{-1}\)</span>。</p>
+<ol type="1">
+<li>因子（通过消去矩阵A得到L和U）</li>
+<li>解（使用L消去b然后使用U进行反向代回）</li>
+</ol>
+<p>如何解方程呢？首先在右侧应用消去的方法，此时b就会变为c，然后回代后解开方程即可：</p>
+<p><span class="math display">\[\begin{equation}
+消元及回代：解\quad Lc=b\quad然后解\quad Ux=c
+\end{equation}\]</span></p>
+<p>应用一下：</p>
+<p><span class="math display">\[
+Ax=b \quad \begin{matrix}u+2v=5\\4u+9v=21\end{matrix}\qquad变为\qquad \begin{matrix}u+2v=5\\v=1\end{matrix}\quad Ux=c
+\]</span></p>
+<p>Lc=b下三角系统：<span class="math inline">\(\begin{bmatrix}1&amp;0\\4&amp;1\end{bmatrix}\begin{bmatrix}c\end{bmatrix}=\begin{bmatrix}5\\21\end{bmatrix}\)</span>求解出<span class="math inline">\(c=\begin{bmatrix}5\\1\end{bmatrix}\)</span>。</p>
+<p>Ux=c上三角系统：<span class="math inline">\(\begin{bmatrix}1&amp;2\\0&amp;1\end{bmatrix}\begin{bmatrix}x\end{bmatrix}=\begin{bmatrix}5\\1\end{bmatrix}\)</span>求解出<span class="math inline">\(x=\begin{bmatrix}3\\1\end{bmatrix}\)</span>。</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/edit/main/2_6_elimination_factorization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Bluetea577/Translate_linear_algebra/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>此书由 <a href="https://quarto.org/">Quarto</a>创建</p>
 </div>
